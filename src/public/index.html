@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>unearth | Discover all of your saved posts from Reddit, right in your browser's new tab page.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="img/png" href="../res/unearth-icon_96.png" />
+  <link rel="stylesheet" type="text/css" media="screen" href="vendor/animate.css/animate.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="vendor/bulma/css/bulma.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="vendor/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
+</head>
+<body>
+  <section class="hero has-text-centered">
+    <div class="hero-body">
+      <div class="container">
+        <div class="logo-container">
+          <figure class="image image is-48x48 is-inline-block" style="vertical-align:top">
+            <img src="../res/unearth-icon_96.png">
+          </figure>
+          <h1 class="title is-2 has-text-weight-bold has-text-black is-inline">
+            unearth
+          </h1>
+        </div>
+        <h2 class="subtitle has-text-black">rediscover your saved posts on reddit</h2>
+        <button id="shuffle" class="button is-black is-uppercase has-text-weight-bold is-size-5">
+            <span class="icon is-medium">
+                <i class="fa fa-random"></i>
+              </span>
+              <span>shuffle</span>
+        </button>
+        <p class="help">⤷ or press [space]</p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="columns is-variable is-6">
+        <div class="column column-0">
+          <a class="box is-unselectable">
+            <article class="media">
+              <div class="media-content">
+                <div class="content is-clearfix">
+                  <div class="notification skeleton skeleton-title ue-title"></div>
+                  <div class="notification skeleton skeleton-title ue-title"></div>
+                  <div class="notification skeleton skeleton-small ue-subreddit subreddit is-pulled-left"></div>
+                  <div class="notification skeleton skeleton-small ue-score score is-pulled-right"></div>
+                </div>
+              </div>
+            </article>
+          </a>
+        </div>
+        <div class="column column-1">
+          <a class="box is-unselectable">
+            <article class="media">
+              <div class="media-content">
+                <div class="content is-clearfix">
+                  <div class="notification skeleton skeleton-title ue-title"></div>
+                  <div class="notification skeleton skeleton-title ue-title"></div>
+                  <div class="notification skeleton skeleton-small ue-subreddit subreddit is-pulled-left"></div>
+                  <div class="notification skeleton skeleton-small ue-score score is-pulled-right"></div>
+                </div>
+              </div>
+            </article>
+          </a>
+        </div>
+        <div class="column column-2">
+          <a class="box is-unselectable">
+            <article class="media">
+              <div class="media-content">
+                <div class="content is-clearfix">
+                  <div class="notification skeleton skeleton-title ue-title"></div>
+                  <div class="notification skeleton skeleton-title ue-title"></div>
+                  <div class="notification skeleton skeleton-small ue-subreddit subreddit is-pulled-left"></div>
+                  <div class="notification skeleton skeleton-small ue-score score is-pulled-right"></div>
+                </div>
+              </div>
+            </article>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p class="help has-text-centered">
+    Hacked on with an axe by Cedric Amaya
+    <span id="copyleft">&copy;</span>
+    <span id="year">2018</span>
+  </p>
+  <script src="vendor/dompurify/dist/purify.min.js"></script>
+  <script src="scripts/animate.css.js"></script>
+  <script src="scripts/index.js"></script>
+</body>
+</html>

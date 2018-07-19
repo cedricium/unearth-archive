@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "unearth - reddit saved posts discovery tool",
+  "version": "1.0.0",
+  "description": "Discover all of your saved posts from Reddit, right in your browser's new tab page.",
+  "applications": {
+    "gecko": {
+      "id": "amaya.cedric@gmail.com",
+      "strict_min_version": "42.0"
+    }
+  },
+  "icons": {
+    "48": "res/unearth-icon_96.png",
+    "96": "res/unearth-icon_96.png"
+  },
+  "background": {
+    "scripts": [
+      "background/browser-polyfill.min.js",
+      "background/authorize.js",
+      "background/main.js"
+    ]
+  },
+  "chrome_url_overrides" : {
+    "newtab": "./public/index.html"
+  },
+  "permissions": [
+    "identity",
+    "storage",
+    "<all_urls>",
+    "https://stats.redditmedia.com/*",
+    "https://*.reddit.com/*"
+  ]
+}

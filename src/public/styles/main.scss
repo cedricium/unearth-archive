@@ -1,0 +1,95 @@
+$box-shadow: 0 4px 20px rgba(0,40,143,.1);
+$box-link-hover-shadow: 0 4px 25px rgba(0,40,143,.2);
+$box-link-active-shadow: 0 4px 25px rgba(0,40,143,.2);
+
+$notification-padding: 0.25rem 2.5rem 1.25rem 1.5rem;
+
+@import '../vendor/bulma/bulma.sass';
+
+html,
+body {
+  background-color: #FAFAFA;
+  background-image: url('../../res/topography.svg');
+}
+
+// Copyleft symbol creation via CSS
+// Refs: https://stackoverflow.com/a/37088340
+span#copyleft {
+  font-size: 0.8rem;
+  vertical-align: text-top;
+  display: inline-block;
+  transform: rotate(180deg);
+}
+
+
+.content {
+  min-width: 100%;
+}
+
+.skeleton {
+  margin-bottom: 0.5rem !important;
+
+  &-title,
+  &-small {
+    background: linear-gradient(270deg, #fafafa, #e5e5e5, #fafafa);
+    background-size: 800% 800%;
+    -webkit-animation: loading 3s linear infinite;
+    -moz-animation: loading 3s linear infinite;
+    animation: loading 3s linear infinite;
+
+    &:nth-child(2) {
+      max-width: 75%;
+    }
+  }
+
+  &-small {
+    max-width: 25%;
+    filter: brightness(97%);
+    padding: 0.50rem 1.25rem;
+    &.score {
+      background: rgba(255, 69, 0, 0.3);
+    }
+  }
+}
+
+.is-orangered {
+  color: orangered;
+}
+
+@-webkit-keyframes loading {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes loading {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes loading {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+
+// animate.css overrides
+.animated.zoomIn {
+  -webkit-animation-duration: 0.85s;
+  -moz-animation-duration: 0.85s;
+  animation-duration: 0.85s;
+
+  -webkit-animation-delay: 0s;
+  -moz-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+.animated.zoomOut {
+  -webkit-animation-duration: 0.75s;
+  -moz-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+
+  -webkit-animation-delay: 0s;
+  -moz-animation-delay: 0s;
+  animation-delay: 0s;
+}
