@@ -60,9 +60,10 @@ typings/
 # next.js build output
 .next
 
-# sass stuff
+# sass & css stuff
 .sass-cache
 *.css.map
+*.css
 
 # vendor directories
 vendor
