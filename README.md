@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="resources/unearth-banner.png">
+  <img src="resources/unearth-banner.png" width="70%">
 </p>
 
 **unearth** is a browser extension that takes over your browser's new tab page and displays a few of your saved posts in an effort to help you sift through [all those posts you saved](https://www.reddit.com/r/DoesAnybodyElse/comments/5uqziy/dae_save_a_reddit_link_just_to_never_look_at_it/) but [never looked at again](https://www.reddit.com/r/DoesAnybodyElse/comments/41t87f/dae_use_the_save_feature_on_reddit_and_then_never/).
