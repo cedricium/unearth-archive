@@ -47,7 +47,9 @@ $ npm start
 `npm start` builds the extension then uses the `web-ext` CLI tool to load the `build/` directory in Firefox. A `--watch` flag is added to the script so that any changes made while running `npm start` will cause running extension to be live reloaded.
 
 ## Screenshot
-![]()
+<p align="center">
+  <img src="resources/screenshot.png">
+</p>
 
 ## Contributing
 Your contributions are always welcome! See an issue you want to tackle or have an idea for a feature you'd like implemented? Just open a pull-request with a short explanation of the changes and I'd be happy to review it.
