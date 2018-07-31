@@ -4,7 +4,7 @@
   "description": "Discover all of your saved posts from Reddit, right in your browser's new tab page.",
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
-    "sass": "sass src/public/styles/main.scss",
+    "sass": "sass src/public/styles/main.scss src/public/styles/main.css",
     "sass:watch": "npm run sass -- --watch",
     "start": "npm run sass && npm run webpack && web-ext -s build/ -f nightly run & npm run webpack:watch",
     "test": "echo \"Error: no test specified\" && exit 1",
