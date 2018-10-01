@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 
+import '../node_modules/bulma/bulma.sass'
+
+import '../node_modules/font-awesome/scss/font-awesome.scss'
+
 
 import _6f6c098b from './layouts/default.vue'
 
@@ -9,7 +13,7 @@ const layouts = { "_default": _6f6c098b }
 
 
 export default {
-  head: {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"}],"link":[],"style":[],"script":[]},
+  head: {"meta":[],"link":[],"style":[],"script":[]},
   render(h, props) {
     const loadingEl = h('nuxt-loading', { ref: 'loading' })
     const layoutEl = h(this.layout || 'nuxt')

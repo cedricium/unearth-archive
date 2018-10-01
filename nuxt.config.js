@@ -1,12 +1,7 @@
 module.exports = {
-  head: {
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-    ]
-  },
-  router: {
-    base: '/app/'
-  },
+  css: [
+    // { src: 'bulma/bulma.sass', lang: 'sass' },
+    // { src: 'font-awesome/scss/font-awesome.scss', lang: 'scss' }
+  ],
   srcDir: 'src/'
 };
