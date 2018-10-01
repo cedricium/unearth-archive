@@ -22,7 +22,8 @@
   "dependencies": {
     "bulma": "^0.7.1",
     "font-awesome": "^4.7.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "redirect-ssl": "^1.3.0"
   },
   "devDependencies": {
     "node-sass": "^4.9.3",
