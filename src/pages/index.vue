@@ -6,7 +6,8 @@
 export default {
   head () {
     return {
-      title: 'hello world',
+      title: 'unearth · the original saved posts management tool',
+      description: 'Unearth helps you manage all of those saved posts you have across various sites / services like Reddit, YouTube, Hacker News, and more.',
       link: [
         { rel: 'stylesheet', href: 'https://www.launchaco.com/static/AllTemplates.min.css' },
       ],
@@ -2772,7 +2773,7 @@ td.hljs-ln-code {
  position:absolute;
  width:15%;
  left:calc(50% - 7.5%);
- box-shadow:inset 0 -9px 10px #0d06280003d,inset 10px 0 10px #0d06280003d,inset -10px 0 10px #0d06280003d;
+ box-shadow:inset 0 -9px 10px #000,inset 10px 0 10px #000,inset -10px 0 10px #000;
  border-radius:0 0 10px 10px;
  height:10px;
  top:0
@@ -2843,7 +2844,7 @@ td.hljs-ln-code {
  position:absolute;
  width:20%;
  left:calc(50% - 10%);
- box-shadow:inset 5px 0 6px 0 #0d06280003d,inset -5px 0 6px 0 #0d06280003d;
+ box-shadow:inset 5px 0 6px 0 #000,inset -5px 0 6px 0 #000;
  height:7px;
  top:0
 }

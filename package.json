@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "npm run build && nuxt start",
-    "heroku-postbuild": "npm start"
+    "start": "nuxt start",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -24,12 +24,12 @@
     "font-awesome": "^4.7.0",
     "nuxt": "^2.0.0"
   },
-  "engines": {
-    "node": "8.9.4",
-    "npm": "6.2.0"
-  },
   "devDependencies": {
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0"
+  },
+  "engines": {
+    "node": "8.9.4",
+    "npm": "6.2.0"
   }
 }
