@@ -7,13 +7,48 @@ export default {
   head () {
     return {
       title: 'unearth · the original saved posts management tool',
-      description: 'Unearth helps you manage all of those saved posts you have across various sites / services like Reddit, YouTube, Hacker News, and more.',
+      description: 'the original saved posts management tool',
       link: [
         { rel: 'stylesheet', href: 'https://www.launchaco.com/static/AllTemplates.min.css' },
       ],
       meta: [
         { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' }
+        { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: 'unearth'
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: 'the original saved posts management tool'
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: 'https://www.tryunearth.com/images/social-graphic.png'
+        },
+        {
+          hid: 'og:image:width',
+          property: 'og:image:width',
+          content: '1200'
+        },
+        {
+          hid: 'og:image:height',
+          property: 'og:image:height',
+          content: '630'
+        },
+        {
+          hid: 'og:image:alt',
+          property: 'og:image:alt',
+          content: 'Contains the "unearth" branding the description on a dark background.'
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: 'https://www.tryunearth.com'
+        },
       ]
     }
   }
