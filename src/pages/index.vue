@@ -10,6 +10,7 @@ export default {
       description: 'the original saved posts management tool',
       link: [
         { rel: 'stylesheet', href: 'https://www.launchaco.com/static/AllTemplates.min.css' },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon-pick.ico' },
       ],
       meta: [
         { charset: 'utf-8' },
