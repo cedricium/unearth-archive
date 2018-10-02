@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 
-import '../node_modules/bulma/bulma.sass'
-
-import '../node_modules/font-awesome/scss/font-awesome.scss'
-
 
 import _6f6c098b from './layouts/default.vue'
 

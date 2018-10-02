@@ -4,7 +4,8 @@ module.exports = {
     // { src: 'font-awesome/scss/font-awesome.scss', lang: 'scss' }
   ],
   serverMiddleware: [
-    'redirect-ssl'
+    'redirect-ssl',
+    '~/middleware/redirect-to-www'
   ],
   srcDir: 'src/'
 };
