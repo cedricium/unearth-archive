@@ -2,7 +2,9 @@ import Vue from 'vue'
 import NuxtChild from './nuxt-child'
 
 
-import NuxtError from './nuxt-error.vue'
+  
+import NuxtError from '../../src/layouts/error.vue'
+  
 
 
 import { compile } from '../utils'
