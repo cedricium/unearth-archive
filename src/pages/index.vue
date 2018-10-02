@@ -49,6 +49,36 @@ export default {
           property: 'og:url',
           content: 'https://www.tryunearth.com'
         },
+        {
+          hid: 'twitter:card',
+          property: 'twitter:card',
+          content: 'summary_large_image'
+        },
+        {
+          hid: 'twitter:site',
+          property: 'twitter:site',
+          content: '@tryunearth'
+        },
+        {
+          hid: 'twitter:title',
+          property: 'twitter:title',
+          content: 'unearth'
+        },
+        {
+          hid: 'twitter:description',
+          property: 'twitter:description',
+          content: 'The Original Saved Posts Management Tool'
+        },
+        {
+          hid: 'twitter:image',
+          property: 'twitter:image',
+          content: 'https://www.tryunearth.com/images/social-graphic.png'
+        },
+        {
+          hid: 'twitter:image:alt',
+          property: 'twitter:image:alt',
+          content: 'Contains the "unearth" branding the description on a dark background.'
+        },
       ]
     }
   }
