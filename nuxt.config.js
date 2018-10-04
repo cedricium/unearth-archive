@@ -85,6 +85,11 @@ module.exports = {
       },
     ]
   },
+  modules: [
+    ['@nuxtjs/google-analytics', {
+      id: process.env.GA_ID || ''
+    }]
+  ],
   serverMiddleware: [
     'redirect-ssl',
     '~/middleware/redirect-to-www'

@@ -44,9 +44,9 @@
             <p class="paragraph mt20 secondary-color">Join the waiting list to get early access when unearth goes into beta!</p>
             <div class="mt40">
               <form action="https://tech.us19.list-manage.com/subscribe/post?u=339a6a86e5e989d8d4632bca5&amp;amp;id=36bc4cb5eb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate="novalidate" class="container-sml mailchimp flex mb20">
-                <input value="" name="EMAIL" id="mce-EMAIL" placeholder="Your Email Address" required="required" class="mailchimp-input mobile-text-center" type="email"> 
+                <input value="" name="EMAIL" id="mce-EMAIL" placeholder="Your Email Address" required="required" class="mailchimp-input mobile-text-center" type="email">
                 <div aria-hidden="true" style="position: absolute; left: -5000px;"><input name="b_3198ee66c8baf4d60aa2fee6b_d60e1830e8" tabindex="-1" value="" type="text"></div>
-                <input name="subscribe" id="mc-embedded-subscribe" class="white-color button no-max-width accent-bg primary-color" value="Get Early Access" type="submit">
+                <input name="subscribe" id="mc-embedded-subscribe" class="white-color button no-max-width accent-bg primary-color" value="Get Early Access" type="submit" @click="sendGAEvent(2)">
               </form>
             </div>
           </div>
@@ -103,6 +103,15 @@ export default {
         content: 'Contains the "unearth" branding and the description on a dark background.'
       },
     ]
+  },
+  methods: {
+    sendGAEvent (id) {
+      this.$ga.event({
+        eventCategory: 'CTA',
+        eventAction: 'click',
+        eventValue: id
+      });
+    }
   }
 };
 </script>
