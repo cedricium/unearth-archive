@@ -69,3 +69,6 @@ vendor
 
 # built-extension (build/)
 build
+
+# Nuxt build
+.nuxt

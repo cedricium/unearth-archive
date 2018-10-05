@@ -1,0 +1,37 @@
+{
+  "name": "unearth",
+  "version": "1.0.0",
+  "description": "saved posts management tool",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "heroku-postbuild": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cedricium/unearth.git"
+  },
+  "author": "Cedric Amaya <amaya.cedric@gmail.com> (https://cedric.tech/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cedricium/unearth/issues"
+  },
+  "homepage": "https://github.com/cedricium/unearth#readme",
+  "dependencies": {
+    "@nuxtjs/google-analytics": "^2.0.2",
+    "bulma": "^0.7.1",
+    "font-awesome": "^4.7.0",
+    "nuxt": "^2.0.0",
+    "redirect-ssl": "^1.3.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0"
+  },
+  "engines": {
+    "node": "8.9.4",
+    "npm": "6.2.0"
+  }
+}
