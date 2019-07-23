@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
 
-function App() {
+import { Route } from 'react-router-dom'
+import { ReceiveFromReddit, SendToReddit } from './components/OAuth'
+
+import { connect } from 'react-redux'
+import { getThings } from './actions'
+
+const Login = () => <SendToReddit />
+const Auth = () => <ReceiveFromReddit />
+const Dashboard = props => (
+  <main>
+    <h2>Welcome, {props.username}!</h2>
+    <button onClick={props.getThings}>Sync Saved Things</button>
+  </main>
+)
+
+const App = props => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {props.isLoggedIn && (
+        <Dashboard username={props.username} getThings={props.getThings} />
+      )}
+      <Login />
+      <Route path="/auth/reddit" component={Auth} />
     </div>
-  );
+  )
 }
 
-export default App;
+const mapStateToProps = state => ({
+  isLoggedIn: state.auth.isLoggedIn,
+  username: state.user.username,
+})
+
+export default connect(mapStateToProps, { getThings })(App)
