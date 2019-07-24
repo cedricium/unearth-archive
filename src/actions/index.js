@@ -1,14 +1,14 @@
 import axios from 'axios'
 
-import { extractSubreddits, extractPosts } from '../utils'
+import { extractSubreddits, extractPosts, extractComments } from '../utils'
 import { getSavedThings } from '../utils/api'
 
 export const LOGIN_START = 'LOGIN_START'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
-export const GET_THINGS_START = 'GET_THINGS_START'
-export const GET_THINGS_SUCCESS = 'GET_THINGS_SUCCESS'
-export const GET_THINGS_FAILURE = 'GET_THINGS_FAILURE'
+export const SYNC_THINGS_START = 'SYNC_THINGS_START'
+export const SYNC_THINGS_SUCCESS = 'SYNC_THINGS_SUCCESS'
+export const SYNC_THINGS_FAILURE = 'SYNC_THINGS_FAILURE'
 export const DELETE_THING_START = 'DELETE_THING_START'
 export const DELETE_THING_SUCCESS = 'DELETE_THING_SUCCESS'
 export const DELETE_THING_FAILURE = 'DELETE_THING_FAILURE'
@@ -41,7 +41,7 @@ export const login = ({ accessToken, refreshToken }) => async dispatch => {
 }
 
 export const getThings = () => async (dispatch, getState) => {
-  dispatch({ type: GET_THINGS_START })
+  dispatch({ type: SYNC_THINGS_START })
   try {
     const { auth, user } = getState()
     const { accessToken } = auth
@@ -49,21 +49,18 @@ export const getThings = () => async (dispatch, getState) => {
     const things = await getSavedThings({ username, accessToken })
     const subredditsById = extractSubreddits(things)
     const postsBySubredditId = extractPosts(things)
-    /**
-     * TODO
-     * const commentsBySubredditId = extractComments(things)
-     */
+    const commentsBySubredditId = extractComments(things)
     dispatch({
-      type: GET_THINGS_SUCCESS,
+      type: SYNC_THINGS_SUCCESS,
       payload: { 
         subreddits: subredditsById,
         posts: postsBySubredditId,
-        /* comments: commentsBySubredditId, */
+        comments: commentsBySubredditId,
       }
     })
   } catch (error) {
     console.error(error)
-    dispatch({ type: GET_THINGS_FAILURE })
+    dispatch({ type: SYNC_THINGS_FAILURE })
   }
 }
 

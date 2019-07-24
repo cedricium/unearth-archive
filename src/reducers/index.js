@@ -2,9 +2,9 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  GET_THINGS_START,
-  GET_THINGS_SUCCESS,
-  GET_THINGS_FAILURE,
+  SYNC_THINGS_START,
+  SYNC_THINGS_SUCCESS,
+  SYNC_THINGS_FAILURE,
   DELETE_THING_START,
   DELETE_THING_SUCCESS,
   DELETE_THING_FAILURE,
@@ -53,11 +53,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         error: 'LOGIN_FAILURE',
       }
-    case GET_THINGS_START:
+    case SYNC_THINGS_START:
       return {
         ...state,
       }
-    case GET_THINGS_SUCCESS:
+    case SYNC_THINGS_SUCCESS:
       return {
         ...state,
         things: {

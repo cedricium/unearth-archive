@@ -9,7 +9,8 @@ import { login } from '../../actions'
 const ReceiveFromReddit = props => {
   const handleSuccess = async (accessToken, { response, state }) => {
     const { access_token, refresh_token } = response
-    props.login({ accessToken: access_token, refreshToken: refresh_token })
+    await props.login({ accessToken: access_token, refreshToken: refresh_token })
+    redirect('/')
   }
 
   const handleError = (error, state) => {
@@ -42,7 +43,7 @@ const ReceiveFromReddit = props => {
       )
   }
 
-  const redirect = to => this.props.history.push(to)
+  const redirect = to => props.history.push(to)
   
   const bearerToken = 
     btoa(`${process.env.REACT_APP_CLIENT_ID}:${process.env.REACT_APP_CLIENT_SECRET}`)

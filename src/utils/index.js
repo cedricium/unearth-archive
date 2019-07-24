@@ -37,6 +37,28 @@ export const extractPosts = things => {
   return postsBySubredditId
 }
 
+export const extractComments = things => {
+  const comments = things
+    .filter(t => t.kind === COMMENT_KIND)
+    .map(comment => {
+      return {
+        id: comment.data.id,
+        author: comment.data.author,
+        score: comment.data.score,
+        nsfw: comment.data.over_18,
+        subredditId: comment.data.subreddit_id,
+        subreddit: comment.data.subredit_name_prefixed,
+        permalink: comment.data.permalink,
+        body: comment.data.body,
+        postTitle: comment.data.link_title,
+        created: comment.data.created,
+        gilded: comment.data.gilded,
+      }
+    })
+  const commentsBySubredditId = groupBySubreddit(comments)
+  return commentsBySubredditId
+}
+
 const collectionById = (collection, key = 'id') => {
   return keyBy(collection, key)
 }
