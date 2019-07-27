@@ -9,6 +9,9 @@ export const extractSubreddits = things => {
       id: d.data.subreddit_id,
       nsfw: d.data.over_18,
       subreddit: d.data.subreddit_name_prefixed,
+      description: d.data.sr_detail && d.data.sr_detail.public_description 
+        ? d.data.sr_detail.public_description
+        : 'No description defined our it could not be found...',
     }
   })
   const subredditsById = collectionById(subreddits)

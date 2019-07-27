@@ -7,58 +7,83 @@ import { Link } from 'react-router-dom'
 
 const Container = styled.div`
   margin: 0 auto;
-  /* width: 100%; */
-  max-width: 760px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
+  width: 100%;
+  max-width: 1150px;
 `
 
 const SubredditWrapper = styled(Link)`
-  width: 40%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex: 1 1;
+  display: inline-flex;
   align-items: center;
-  margin: 5px 0 0;
+  margin: 0 3% 50px 0;
   padding: 10px;
+  width: 28%;
+  border-radius: 8px;
+  color: #050505;
   text-decoration: none;
-  color: inherit;
-  border-radius: 5px;
 
   &:hover {
-    background: #f5f5f5;
+    background: #F9F9F9;
   }
 
-  @media(max-width: 680px) {
+  @media(max-width: 855px) {
+    & { width: 40%; }
+  }
+
+  @media(max-width: 640px) {
     & {
-      width: 100%;
+      margin: 0 0 25px;
+      width: 92%;
     }
   }
 `
 
-const SubredditAvatar = styled.img`
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
-  margin: 0 10px 0 0;
+const SubInfo = styled.div`
+  margin: 0;
+  font-size: 13px;
+  font-weight: 300;
+
+  & > p {
+    margin: 0;
+    padding: 0;
+  }
+`
+
+const SubTitle = styled.p`
+  font-weight: 500;
+`
+
+const SubDesc = styled.p`
+  margin: 5px 0 0 !important;
+`
+
+const SubMeta = styled.p`
+  margin: 8px 0 0 !important;
+  font-size: 11px;
+  font-weight: 400;
+
+  & > span {
+    padding: 2px 4px;
+    border-radius: 4px;
+    background: #ffadaf;
+  }
 `
 
 const Dashboard = props => {
-  /* <button onClick={props.getThings}>Sync Saved Things</button> */
-  const subreddits = Object.values(props.subreddits)
+  const subreddits = Object.values(props.subreddits || {})
   return (
     <main>
+      <button onClick={props.getThings}>Sync Saved Things</button>
       <Container>
         {subreddits.map(s => (
           <SubredditWrapper to={s.subreddit} key={s.id}>
-            <SubredditAvatar
-              src={`https://avatars.changefeed.app/?i=${s.subreddit}`}
-              alt={s.subreddit}
-            />
-            <p>{s.subreddit}</p>
+            <SubInfo>
+              <SubTitle>{s.subreddit}</SubTitle>
+              <SubDesc>
+                {s.description}
+              </SubDesc>
+              {s.nsfw && <SubMeta><span className="nsfw">🔞 nsfw</span></SubMeta>}
+            </SubInfo>
           </SubredditWrapper>
         ))}
       </Container>

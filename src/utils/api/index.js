@@ -10,7 +10,7 @@ export const getSavedThings = ({
   return new Promise(async (resolve, reject) => {
     const REDDIT_API_HOST = 'https://oauth.reddit.com'
     const REDDIT_SAVED_ENDPOINT = 
-      `/user/${username}/saved?&limit=100&count=${count}&after=${after}&raw_json=1`
+      `/user/${username}/saved?&limit=100&count=${count}&after=${after}&raw_json=1&sr_detail=1`
     try {
       const { data } = (await axios.get(
         `${REDDIT_API_HOST}${REDDIT_SAVED_ENDPOINT}`, {
