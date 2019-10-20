@@ -14,7 +14,7 @@
     "sqlite3": "^4.1.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "NODE_ENV=production node index.js",
     "dev": "nodemon index.js",
     "db:rollback": "./node_modules/.bin/knex migrate:rollback --all",
     "db:migrate": "./node_modules/.bin/knex migrate:up",
