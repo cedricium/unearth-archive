@@ -1,0 +1,26 @@
+{
+  "name": "unearth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "email-templates": "^6.0.3",
+    "express": "^4.17.1",
+    "knex": "^0.19.5",
+    "node-cron": "^2.0.3",
+    "nodemailer": "^6.3.1",
+    "pug": "^2.0.4",
+    "sqlite3": "^4.1.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "db:rollback": "./node_modules/.bin/knex migrate:rollback --all",
+    "db:migrate": "./node_modules/.bin/knex migrate:up",
+    "db:seed": "./node_modules/.bin/knex seed:run",
+    "db:reset": "yarn db:rollback && yarn db:migrate && yarn db:seed"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}

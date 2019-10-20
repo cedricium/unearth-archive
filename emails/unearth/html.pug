@@ -1,0 +1,12 @@
+h2 This Week's Hidden Gems 💎
+if things.length === 0
+  p Looks like you're all caught up, nice work! 🎉
+else
+  each thing in things
+    div
+      if thing.thumbnail.startsWith('http')
+        img(src=thing.thumbnail)
+      p
+        a(href=thing.url) #{thing.title}
+        | 
+        | by u/#{thing.author}
