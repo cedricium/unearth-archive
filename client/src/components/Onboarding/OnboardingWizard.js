@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { Email, Frequency, Sync } from '../Onboarding'
+import { Email, Frequency, Sync, Success } from '../Onboarding'
 
 const Welcome = props => {
   return (
@@ -38,6 +38,7 @@ const Onboarding = () => {
       <Route path='/onboarding/email' component={Email} />
       <Route path='/onboarding/frequency' component={Frequency} />
       <Route path='/onboarding/sync' component={Sync} />
+      <Route path='/onboarding/success' component={Success} />
     </Switch>
   )
 }
