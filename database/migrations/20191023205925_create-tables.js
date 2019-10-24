@@ -8,7 +8,7 @@ exports.up = function(knex) {
         .unique()
         .notNullable()
       table
-        .string('frequency')
+        .enum('frequency', ['daily', 'weekly', 'monthly'])
         .default('daily')
         .notNullable()
     })
