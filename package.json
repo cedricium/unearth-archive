@@ -6,11 +6,11 @@
   "dependencies": {
     "amqp-connection-manager": "^3.0.0",
     "amqplib": "^0.5.5",
+    "cron": "^1.7.2",
     "dotenv": "^8.2.0",
     "email-templates": "^6.0.3",
     "express": "^4.17.1",
     "knex": "^0.19.5",
-    "node-cron": "^2.0.3",
     "nodemailer": "^6.3.1",
     "pg": "^7.12.1",
     "pug": "^2.0.4"

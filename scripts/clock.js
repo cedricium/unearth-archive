@@ -4,7 +4,7 @@
  *  - https://devcenter.heroku.com/articles/clock-processes-python
  */
 
-const CronJob = require('node-cron').CronJob
+const CronJob = require('cron').CronJob
 const amqp = require('amqp-connection-manager')
 
 const AMQP_URL = process.env.CLOUDAMQP_URL || 'amqp://localhost'

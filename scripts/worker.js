@@ -17,7 +17,6 @@ console.log('[AMQP] - Connecting...')
 connection.on('connect', () => {
   process.once('SIGINT', () => connection.close())
   console.log('[AMQP] - Connected!')
-  return startScheduledJobs(JOBS)
 })
 
 connection.on('disconnect', params => {
