@@ -61,6 +61,9 @@ const onMessage = data => {
 
   switch (message.taskName) {
     case 'daily':
+      console.log(
+        `Processing current message with task name ${message.taskName}`,
+      )
       break
 
     case 'weekly':

@@ -16,7 +16,8 @@ const JOBS = [
   {
     name: 'daily',
     message: { taskName: 'dailyEmail', queue: WORKER_QUEUE },
-    cronTime: '0 1 * * *',
+    // cronTime: '0 1 * * *',
+    cronTime: '* * * * *',
   },
   {
     name: 'weekly',
