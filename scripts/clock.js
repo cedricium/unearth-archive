@@ -18,16 +18,19 @@ const JOBS = [
     message: { taskName: 'dailyEmail', queue: WORKER_QUEUE },
     // cronTime: '0 1 * * *',
     cronTime: '* * * * *',
+    repeat: true,
   },
   {
     name: 'weekly',
     message: { taskName: 'weeklyEmail', queue: WORKER_QUEUE },
     cronTime: '15 1 * * 0',
+    repeat: true,
   },
   {
     name: 'monthly',
     message: { taskName: 'monthlyEmail', queue: WORKER_QUEUE },
     cronTime: '30 1 1 * *',
+    repeat: true,
   },
 ]
 
@@ -67,7 +70,7 @@ function startScheduledJobs(jobs) {
 function sendMessage(data) {
   let message
   try {
-    message = JSON.parse(data)
+    message = JSON.parse(JSON.stringify(data))
   } catch (err) {
     console.error(err)
   }
