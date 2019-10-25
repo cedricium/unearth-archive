@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "amqp-connection-manager": "^3.0.0",
+    "amqplib": "^0.5.5",
     "dotenv": "^8.2.0",
     "email-templates": "^6.0.3",
     "express": "^4.17.1",
