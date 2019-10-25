@@ -11,13 +11,11 @@ const AMQP_URL = process.env.CLOUDAMQP_URL || 'amqp://localhost'
 if (!AMQP_URL) process.exit(1)
 
 const WORKER_QUEUE = 'worker-queue'
-const CLOCK_QUEUE = 'clock-queue'
 const JOBS = [
   {
     name: 'daily',
     message: { taskName: 'dailyEmail', queue: WORKER_QUEUE },
-    // cronTime: '0 1 * * *',
-    cronTime: '* * * * *',
+    cronTime: '0 1 * * *',
     repeat: true,
   },
   {

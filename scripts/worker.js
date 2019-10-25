@@ -59,16 +59,13 @@ function onMessage(data) {
   }
 
   switch (message.taskName) {
-    case 'daily':
-      console.log(
-        `Processing current message with task name ${message.taskName}`,
-      )
+    case 'dailyEmail':
       break
 
-    case 'weekly':
+    case 'weeklyEmail':
       break
 
-    case 'monthly':
+    case 'monthlyEmail':
       break
 
     default:
