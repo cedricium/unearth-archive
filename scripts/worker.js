@@ -44,7 +44,7 @@ channelWrapper
     console.error('[AMQP] - Error! ', err)
   })
 
-const onMessage = data => {
+function onMessage(data) {
   let message
   try {
     message = JSON.parse(data.content.toString())

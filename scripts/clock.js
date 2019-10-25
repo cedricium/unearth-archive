@@ -44,7 +44,7 @@ connection.on('disconnect', params => {
   return console.error('[AMQP] - Disconnected.', params.err.stack)
 })
 
-const startScheduledJobs = jobs => {
+function startScheduledJobs(jobs) {
   if (jobs && jobs.length) {
     jobs.forEach(job => {
       const j = new CronJob({
@@ -63,7 +63,7 @@ const startScheduledJobs = jobs => {
   }
 }
 
-const sendMessage = data => {
+function sendMessage(data) {
   let message
   try {
     message = JSON.parse(data)
