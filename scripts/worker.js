@@ -21,7 +21,8 @@ connection.on('connect', () => {
 })
 
 connection.on('disconnect', params => {
-  return console.error('[AMQP] - Disconnected.', params.err.stack)
+  console.error('[AMQP] - Disconnected.', params.err.stack)
+  connection.close()
 })
 
 let channelWrapper = connection.createChannel({
