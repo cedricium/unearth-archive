@@ -125,6 +125,13 @@ ambi@^2.2.0:
     editions "^1.1.1"
     typechecker "^4.3.0"
 
+amqp-connection-manager@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/amqp-connection-manager/-/amqp-connection-manager-3.0.0.tgz#9e273c616122033ca802f962b4d0e48895a5ff9a"
+  integrity sha512-a5MsUDsG+CqMjwk/WNFSTE0H4pAaWJXw7L24QFa3MeaB+KA05PXoBsppYlIzaIqc1XLWZwjO9J42AFHNrDsVFQ==
+  dependencies:
+    promise-breaker "^5.0.0"
+
 ansi-align@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-2.0.0.tgz#c36aeccba563b89ceb556f3690f0b1d9e3547f7f"
@@ -2710,6 +2717,11 @@ process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
+
+promise-breaker@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/promise-breaker/-/promise-breaker-5.0.0.tgz#58e8541f1619554057da95a211794d7834d30c1d"
+  integrity sha512-mgsWQuG4kJ1dtO6e/QlNDLFtMkMzzecsC69aI5hlLEjGHFNpHrvGhFi4LiK5jg2SMQj74/diH+wZliL9LpGsyA==
 
 promise@^7.0.1:
   version "7.3.1"

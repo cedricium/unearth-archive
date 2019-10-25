@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "amqp-connection-manager": "^3.0.0",
     "dotenv": "^8.2.0",
     "email-templates": "^6.0.3",
     "express": "^4.17.1",
@@ -23,5 +24,9 @@
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
+  },
+  "engines": {
+    "node": "10.16.x",
+    "yarn": "1.x"
   }
 }
