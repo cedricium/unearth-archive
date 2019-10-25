@@ -1,7 +1,11 @@
 exports.up = function(knex) {
   return knex.schema
     .createTable('users', table => {
-      table.increments()
+      table
+        .string('id')
+        .primary()
+        .unique()
+        .notNullable()
       table.string('username').notNullable()
       table
         .string('email')
@@ -9,7 +13,7 @@ exports.up = function(knex) {
         .notNullable()
       table
         .enum('frequency', ['daily', 'weekly', 'monthly'])
-        .default('daily')
+        .default('weekly')
         .notNullable()
     })
     .createTable('things', table => {
@@ -19,7 +23,7 @@ exports.up = function(knex) {
         .unique()
         .notNullable()
       table.string('subreddit')
-      table.string('selftext')
+      table.text('selftext')
       table.string('author_fullname')
       table.string('title')
       table.string('subreddit_name_prefixed')
@@ -31,11 +35,10 @@ exports.up = function(knex) {
       table.string('author')
       table.string('permalink')
       table.string('url')
-      table.timestamp('created_utc')
+      table.bigInteger('created_utc')
       table.boolean('surfaced').default(false)
       table
-        .integer('user_id')
-        .unsigned()
+        .string('user_id')
         .notNullable()
         .references('users.id')
         .onDelete('CASCADE')
