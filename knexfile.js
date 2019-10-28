@@ -1,15 +1,10 @@
+require('dotenv').config()
+
 module.exports = {
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     useNullAsDefault: true,
-    connection: {
-      filename: './database/unearth.db3',
-    },
-    pool: {
-      afterCreate: (conn, done) => {
-        conn.run('PRAGMA foreign_keys = ON', done)
-      },
-    },
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: './database/migrations',
     },
@@ -17,4 +12,5 @@ module.exports = {
       directory: './database/seeds',
     },
   },
+  production: {},
 }
