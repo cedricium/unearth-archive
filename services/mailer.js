@@ -89,4 +89,4 @@ const sendMail = async (frequency = 'daily') => {
   }
 }
 
-sendMail()
+sendMail().catch(err => console.error(err))
