@@ -62,3 +62,4 @@ typings/
 
 res/
 *.db3
+*.todo
