@@ -17,11 +17,7 @@ exports.up = function(knex) {
         .notNullable()
     })
     .createTable('things', table => {
-      table
-        .string('id')
-        .primary()
-        .unique()
-        .notNullable()
+      table.string('id').notNullable()
       table.string('subreddit')
       table.text('selftext')
       table.string('author_fullname')
@@ -42,6 +38,7 @@ exports.up = function(knex) {
         .notNullable()
         .references('users.id')
         .onDelete('CASCADE')
+      table.primary(['id', 'user_id'])
     })
 }
 
