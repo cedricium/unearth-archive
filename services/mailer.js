@@ -1,3 +1,4 @@
+const path = require('path')
 const nodemailer = require('nodemailer')
 const db = require('../database/config')
 const Email = require('email-templates')
@@ -43,7 +44,7 @@ const sendMail = async (frequency = 'daily') => {
 
     // forEach user...
     // get data from DB
-    users.forEach(async user => {
+    for (let user of users) {
       const data = await db
         .table('things')
         .where({
@@ -52,7 +53,23 @@ const sendMail = async (frequency = 'daily') => {
         })
         .limit(5)
 
-      const email = new Email()
+      const email = new Email({
+        juice: true,
+        juiceResources: {
+          preserveImportant: true,
+          webResources: {
+            //
+            // this is the relative directory to your CSS/image assets
+            // and its default path is `build/`:
+            //
+            // References:
+            //  - https://github.com/niftylettuce/email-templates#automatic-inline-css-via-stylesheets
+            //
+            relativeTo: path.join(__dirname, '..', 'emails', 'unearth', 'css'),
+          },
+        },
+      })
+
       const html = await email.render('unearth/html', {
         things: data,
       })
@@ -60,17 +77,17 @@ const sendMail = async (frequency = 'daily') => {
       // send mail with defined transport object
       let info = await transporter.sendMail({
         from: '"Cedric from Unearth" <hello@tryunearth.com>', // sender address
-        to: 'amaya.cedric@gmail.com', // list of receivers
-        subject: '💎 Your Hidden Gems', // Subject line
+        to: user.email, // list of receivers
+        subject: `Today's Hidden Gems`, // Subject line
         text: 'Hello, world!', // plain text body
         html,
       })
 
-      data.forEach(async d => {
+      for (let d of data) {
         await db('things')
           .where({ id: d.id })
           .update({ surfaced: true })
-      })
+      }
 
       console.log('Message sent: %s', info.messageId)
       // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
@@ -80,9 +97,8 @@ const sendMail = async (frequency = 'daily') => {
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
         // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
       }
-
-      process.exit(0)
-    })
+    }
+    process.exit(0)
   } catch (err) {
     console.error(err)
     process.exit(1)
