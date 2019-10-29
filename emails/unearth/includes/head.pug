@@ -1,3 +1,45 @@
 head
+  meta(http-equiv='Content-Type' content='text/html; charset=UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
   title Unearth - Your Hidden Gems
-  link(rel="stylesheet", href="/style.css" type="text/css", data-inline)
+  style.
+    @media only screen and (max-width: 620px) {
+      table[class=body] .wrapper {
+        padding: 12px !important;
+      }
+      table[class=body] .container {
+        padding: 0 !important;
+        width: 100% !important;
+      }
+      table[class=body] .main {
+        border-left-width: 0 !important;
+        border-radius: 0 !important;
+        border-right-width: 0 !important;
+      }
+    }
+
+    @media all {
+      .thing {
+        font-style: normal !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        line-height: 17px !important;
+        margin: 0 0 20px !important;
+      }
+      .thing .subreddit {
+        font-weight: 700 !important;
+        font-size: 12px !important;
+        line-height: 15px !important;
+        margin: 0 0 8px !important;
+      }
+      .thing .title-link {
+        margin: 0;
+        padding: 0;
+      }
+      .thing .title-link a {
+        font-size: 14px !important;
+        line-height: 17px !important;
+        color: inherit !important;
+      }
+    }

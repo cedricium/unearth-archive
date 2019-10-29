@@ -1,4 +1,3 @@
-const path = require('path')
 const nodemailer = require('nodemailer')
 const db = require('../database/config')
 const Email = require('email-templates')
@@ -53,23 +52,7 @@ const sendMail = async (frequency = 'daily') => {
         })
         .limit(5)
 
-      const email = new Email({
-        juice: true,
-        juiceResources: {
-          preserveImportant: true,
-          webResources: {
-            //
-            // this is the relative directory to your CSS/image assets
-            // and its default path is `build/`:
-            //
-            // References:
-            //  - https://github.com/niftylettuce/email-templates#automatic-inline-css-via-stylesheets
-            //
-            relativeTo: path.join(__dirname, '..', 'emails', 'unearth', 'css'),
-          },
-        },
-      })
-
+      const email = new Email({})
       const html = await email.render('unearth/html', {
         things: data,
       })
