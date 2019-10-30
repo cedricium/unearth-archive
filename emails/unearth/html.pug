@@ -27,8 +27,10 @@ html
                         if things.length === 0
                           p Looks like you're all caught up, nice work! 🎉
                         else
-                          each thing in things
+                          each thing, index in things
                             div(class='thing')
+                              if index === 0
+                                img(src=thing.thumbnail alt="thing text" width="600" height="200" border="0" style="border:0; outline:none; text-decoration:none; display:block; max-width: 600px !important; width: 100% !important; height: auto !important; width: 600px;")
                               p(class='subreddit') #{thing.subreddit_name_prefixed}
                               p(class='title-link')
                                 a(href=thing.url) #{thing.title}
