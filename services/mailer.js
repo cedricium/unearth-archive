@@ -50,11 +50,51 @@ const sendMail = async (frequency = 'daily') => {
           user_id: user.id,
           surfaced: false,
         })
-        .limit(5)
+        .limit(4)
+
+      /**
+       * Featured Thing
+       *
+       *  - 1 post or comment (first one displayed)
+       *  - thing cannot be nsfw
+       *  - must have image / media associated with it
+       *  - display said image full width above it's thing
+       *
+       * Image path in saved.json to be used:
+       *  preview
+       *  ↳ images
+       *    ↳ 0
+       *      ↳ source
+       *        ↳ url
+       *
+       * After basic implementation, things to fix:
+       *  - [ ] duplicate things (featured and one in `data`)
+       *    - solution: `id` not in data ids
+       *  - [ ] need padding below image
+       *  - [ ] no featured thing, so `index === 0` check shows 1st of 4 data's image (which could be nsfw)
+       *    - solution: featured thing as its own prop in the `email.render` function below
+       *        1. find a featured thing (if any)
+       *            - thumbnail != null
+       *            - surfaced = false
+       *            - over_18 = false
+       *        2. get 4 things (if no featured, else 5)
+       *            - thing.id != featured.id
+       *        3. update html.pug, eliminating index = 0 and creating a separate space for the featured thing
+       *           if it exists
+       */
+      const featuredThing = await db
+        .table('things')
+        .where({
+          user_id: user.id,
+          over_18: false,
+          surfaced: false,
+        })
+        .whereNotNull('thumbnail')
+        .limit(1)
 
       const email = new Email({})
       const html = await email.render('unearth/html', {
-        things: data,
+        things: [...featuredThing, ...data],
       })
 
       // send mail with defined transport object
@@ -66,7 +106,7 @@ const sendMail = async (frequency = 'daily') => {
         html,
       })
 
-      for (let d of data) {
+      for (let d of [...featuredThing, ...data]) {
         await db('things')
           .where({ id: d.id })
           .update({ surfaced: true })
