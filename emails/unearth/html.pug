@@ -27,10 +27,11 @@ html
                           p Looks like you're all caught up, nice work! 🎉
                         else
                           each thing in things
+                            - const THING_URL = `https://reddit.com` + thing.permalink
                             div(class='thing')
                               p(class='subreddit') #{thing.subreddit_name_prefixed}
                               p(class='title-link')
-                                a(href=thing.url) #{thing.title}
+                                a(href=THING_URL) #{thing.title}
               //- END MAIN CONTENT AREA
             //- START FOOTER
             .footer(style='clear: both; Margin-top: 10px; text-align: center; width: 100%;')
