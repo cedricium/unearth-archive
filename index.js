@@ -16,13 +16,6 @@ io.on('connection', socket => {
   })
 
   socket.on('sync-reddit-saves', async data => {
-    // moved up and instantiated in `socket.on('connection')`
-    const rs = new RedditService({
-      id: 'a9cqu',
-      username: 'Cedricium',
-      refreshToken: '17232582-g73iP6YNiVvMhf7XWB1hZ3AufiQ',
-    })
-
     const userSyncStatus = await rs.syncRedditSaves()
     socket.emit('sync-status', userSyncStatus)
   })
