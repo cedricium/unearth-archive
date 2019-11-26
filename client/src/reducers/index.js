@@ -2,9 +2,6 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  SYNC_THINGS_START,
-  SYNC_THINGS_SUCCESS,
-  SYNC_THINGS_FAILURE,
   // SAVE_EMAIL,
   UPDATE_EMAIL,
   // SAVE_FREQUENCY_PREF,
@@ -22,30 +19,11 @@ const initialState = {
     username: '',
     profileImg: '',
   },
-  things: {
-    isFetching: false,
-    successful: false,
-    subreddits: null,
-    posts: null,
-    comments: null,
-  },
   error: null,
   onboarding: {
-    steps: {
-      email: {
-        completed: false,
-      },
-      frequency: {
-        completed: false,
-      },
-      sync: {
-        completed: false,
-      },
-    },
     data: {
       emailAddress: '',
       newsletterFrequency: 'daily',
-      // things: --> state.things
     },
   },
 }
@@ -73,35 +51,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         error: 'LOGIN_FAILURE',
-      }
-    case SYNC_THINGS_START:
-      return {
-        ...state,
-        things: {
-          ...state.things,
-          isFetching: true,
-        },
-        error: null,
-      }
-    case SYNC_THINGS_SUCCESS:
-      return {
-        ...state,
-        things: {
-          subreddits: { ...state.subreddits, ...payload.subreddits },
-          posts: { ...state.posts, ...payload.posts },
-          comments: { ...state.comments, ...payload.comments },
-          isFetching: false,
-          successful: true,
-        },
-      }
-    case SYNC_THINGS_FAILURE:
-      return {
-        ...state,
-        things: {
-          isFetching: false,
-          successful: false,
-        },
-        error: 'Failed to sync saves!',
       }
     case UPDATE_EMAIL:
       return {

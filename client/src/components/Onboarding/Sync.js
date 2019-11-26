@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import { getThings } from '../../actions'
+// import { Redirect } from 'react-router-dom'
 import Navigation from './utils/Navigation'
 
 const Sync = props => {
-  if (props.successful) {
-    return <Redirect to='/onboarding/success' />
-  }
+  // if (props.successful) {
+  //   return <Redirect to='/onboarding/success' />
+  // }
   return (
     <div className='step_3'>
       <h3>Step 3</h3>
@@ -20,22 +19,19 @@ const Sync = props => {
           you have saved. Do not close this tab or refresh the page.
         </small>
       </p>
-      <button disabled={props.isFetching} onClick={() => props.getThings()}>
+      {/* <button disabled={props.isFetching} onClick={() => props.getThings()}>
         {props.isFetching ? 'Syncing...' : 'Sync Reddit Saves'}
-      </button>
+      </button> */}
       <p>{props.error && props.error}</p>
       <Navigation />
     </div>
   )
 }
 
-const mapStateToProps = state => ({
-  error: state.error,
-  isFetching: state.things.isFetching,
-  successful: state.things.successful,
-})
+// const mapStateToProps = state => ({
+//   error: state.error,
+//   isFetching: state.things.isFetching,
+//   successful: state.things.successful,
+// })
 
-export default connect(
-  mapStateToProps,
-  { getThings },
-)(Sync)
+export default connect(/* mapStateToProps */)(Sync)
