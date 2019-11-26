@@ -4,15 +4,16 @@ import { withRouter } from 'react-router-dom'
 import qs from 'querystring'
 
 import { connect } from 'react-redux'
-import { login } from '../../actions'
+import { retrieveRedditorInfo, registerUser } from '../../actions'
 
 const ReceiveFromReddit = props => {
   const handleSuccess = async (accessToken, { response, state }) => {
     const { access_token, refresh_token } = response
-    await props.login({
+    await props.retrieveRedditorInfo({
       accessToken: access_token,
       refreshToken: refresh_token,
     })
+    await props.registerUser()
     redirect('/')
   }
 
@@ -79,8 +80,5 @@ const ReceiveFromReddit = props => {
 }
 
 export default withRouter(
-  connect(
-    null,
-    { login },
-  )(ReceiveFromReddit),
+  connect(null, { retrieveRedditorInfo, registerUser })(ReceiveFromReddit),
 )
