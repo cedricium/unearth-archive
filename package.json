@@ -6,10 +6,13 @@
   "dependencies": {
     "amqp-connection-manager": "^3.0.0",
     "amqplib": "^0.5.5",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "cron": "^1.7.2",
     "dotenv": "^8.2.0",
     "email-templates": "^6.0.3",
     "express": "^4.17.1",
+    "helmet": "^3.21.2",
     "knex": "^0.19.5",
     "nodemailer": "^6.3.1",
     "pg": "^7.12.1",
