@@ -9,15 +9,29 @@ const RedditService = require('./services/reddit')
 
 io.on('connection', socket => {
   console.log(`[socket] client connected! - ${socket.id}`)
+  let rs
+
+  socket.on('client-connect', async data => {
+    console.log(`[socket] client-connect`)
+    const { id, username, refreshToken } = data
+    rs = new RedditService({ id, username, refreshToken })
+  })
+
   socket.on('check-sync-status', async data => {
     console.log(`[socket] check-sync-status`)
-    const userSyncStatus = await RedditService.checkSyncStatus(data)
+    const userSyncStatus = await rs.checkSyncStatus()
     socket.emit('sync-status', userSyncStatus)
   })
 
   socket.on('sync-reddit-saves', async data => {
-    const userSyncStatus = await rs.syncRedditSaves()
-    socket.emit('sync-status', userSyncStatus)
+    console.log(`[socket] sync-reddit-saves`)
+    const { has_synced_with_reddit, sync_status } = await rs.checkSyncStatus()
+    if (has_synced_with_reddit) {
+      socket.emit('sync-status', { has_synced_with_reddit, sync_status })
+    } else {
+      const userSyncStatus = await rs.syncRedditSaves()
+      socket.emit('sync-status', userSyncStatus)
+    }
   })
 })
 
