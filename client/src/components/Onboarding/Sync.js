@@ -1,12 +1,51 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-// import { Redirect } from 'react-router-dom'
 import Navigation from './utils/Navigation'
+import {
+  closeConnection,
+  connectClient,
+  checkSyncStatus,
+  syncRedditSaves,
+} from '../../utils/api'
 
-const Sync = props => {
-  // if (props.successful) {
-  //   return <Redirect to='/onboarding/success' />
-  // }
+const Sync = ({ id, username, refreshToken }) => {
+  const [isConnected, setIsConnected] = useState(false)
+  const [hasSyncedWithReddit, setHasSyncedWithReddit] = useState(false)
+  const [syncStatus, setSyncStatus] = useState('not-started')
+
+  // Empty dependency array passed as second argument effectively means this
+  // `useEffect` function will only be triggered when this component mounts.
+  // Reference: https://reactjs.org/docs/hooks-effect.html
+  useEffect(() => {
+    connectClient({ id, username, refreshToken }, (error, response) => {
+      if (response && response.status === 'success') {
+        setIsConnected(true)
+      }
+    })
+    // Returning a function from inside the `useEffect` function enables the
+    // optional cleanup mechanism. Necessary in this case to remove socket.io
+    // event listeners and disconnect the socket when the component unmounts.
+    return closeConnection
+  }, [])
+
+  useEffect(() => {
+    checkSyncStatus((error, response) => updateSyncStatus(response))
+  }, [isConnected])
+
+  const syncSaves = () => {
+    syncRedditSaves((error, response) => {
+      updateSyncStatus(response)
+    })
+  }
+
+  const updateSyncStatus = response => {
+    const { has_synced_with_reddit, sync_status } = response
+    setHasSyncedWithReddit(has_synced_with_reddit)
+    setSyncStatus(sync_status)
+  }
+
+  if (!isConnected) return <p>Loading...</p>
+
   return (
     <div className='step_3'>
       <h3>Step 3</h3>
@@ -19,19 +58,21 @@ const Sync = props => {
           you have saved. Do not close this tab or refresh the page.
         </small>
       </p>
-      {/* <button disabled={props.isFetching} onClick={() => props.getThings()}>
-        {props.isFetching ? 'Syncing...' : 'Sync Reddit Saves'}
-      </button> */}
-      <p>{props.error && props.error}</p>
+      <button onClick={() => syncSaves()}>Sync Reddit Saves</button>
+      <p>Current Sync Status: {syncStatus && syncStatus}</p>
+      <p>
+        {syncStatus === 'failed' &&
+          'An error occurred while syncing your saves!'}
+      </p>
       <Navigation />
     </div>
   )
 }
 
-// const mapStateToProps = state => ({
-//   error: state.error,
-//   isFetching: state.things.isFetching,
-//   successful: state.things.successful,
-// })
+const mapStateToProps = state => ({
+  id: state.user.id,
+  username: state.user.username,
+  refreshToken: state.auth.refreshToken,
+})
 
-export default connect(/* mapStateToProps */)(Sync)
+export default connect(mapStateToProps)(Sync)

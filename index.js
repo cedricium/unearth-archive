@@ -15,6 +15,7 @@ io.on('connection', socket => {
     console.log(`[socket] client-connect`)
     const { id, username, refreshToken } = data
     rs = new RedditService({ id, username, refreshToken })
+    socket.emit('client-connection', { status: 'success' })
   })
 
   socket.on('check-sync-status', async data => {
