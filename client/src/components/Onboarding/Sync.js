@@ -7,9 +7,10 @@ import {
   connectClient,
   checkSyncStatus,
   syncRedditSaves,
+  updateUserInfo,
 } from '../../utils/api'
 
-const Sync = ({ id, username, refreshToken }) => {
+const Sync = ({ id, username, refreshToken, email, frequency, history }) => {
   const [isConnected, setIsConnected] = useState(false)
   const [hasSyncedWithReddit, setHasSyncedWithReddit] = useState(false)
   const [syncStatus, setSyncStatus] = useState('not-started')
@@ -69,6 +70,15 @@ const Sync = ({ id, username, refreshToken }) => {
       >
         Sync Reddit Saves
       </button>
+      <button
+        style={{ display: syncStatus === 'successful' ? 'block' : 'none' }}
+        onClick={async () => {
+          await updateUserInfo({ id, email, frequency })
+          history.push('/onboarding/success')
+        }}
+      >
+        Submit
+      </button>
       <p>Current Sync Status: {syncStatus && syncStatus}</p>
       <p>
         {syncStatus === 'failed' &&
@@ -83,6 +93,8 @@ const mapStateToProps = state => ({
   id: state.user.id,
   username: state.user.username,
   refreshToken: state.auth.refreshToken,
+  email: state.onboarding.data.emailAddress,
+  frequency: state.onboarding.data.newsletterFrequency,
 })
 
 export default connect(mapStateToProps)(Sync)

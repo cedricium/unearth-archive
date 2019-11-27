@@ -1,7 +1,18 @@
+import axios from 'axios'
 import io from 'socket.io-client'
 
+const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL
 const BACKEND_SOCKET_URL = process.env.REACT_APP_BACKEND_SOCKET_URL
+
 const socket = io(BACKEND_SOCKET_URL)
+
+export const updateUserInfo = async ({ id, email, frequency }) => {
+  try {
+    await axios.patch(`${BACKEND_API_URL}/users/${id}`, { email, frequency })
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 export const connectClient = (userInfo, callback) => {
   if (socket.disconnected) {
