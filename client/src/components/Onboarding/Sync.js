@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import SyncLoader from 'react-spinners/SyncLoader'
 import Navigation from './utils/Navigation'
 import {
   closeConnection,
@@ -33,6 +34,7 @@ const Sync = ({ id, username, refreshToken }) => {
   }, [isConnected])
 
   const syncSaves = () => {
+    setSyncStatus('in-progress')
     syncRedditSaves((error, response) => {
       updateSyncStatus(response)
     })
@@ -58,7 +60,15 @@ const Sync = ({ id, username, refreshToken }) => {
           you have saved. Do not close this tab or refresh the page.
         </small>
       </p>
-      <button onClick={() => syncSaves()}>Sync Reddit Saves</button>
+      {syncStatus === 'in-progress' && (
+        <SyncLoader size={8} sizeUnit={'px'} loading={true} />
+      )}
+      <button
+        style={{ display: syncStatus === 'not-started' ? 'block' : 'none' }}
+        onClick={() => syncSaves()}
+      >
+        Sync Reddit Saves
+      </button>
       <p>Current Sync Status: {syncStatus && syncStatus}</p>
       <p>
         {syncStatus === 'failed' &&
