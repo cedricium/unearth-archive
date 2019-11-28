@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import SyncLoader from 'react-spinners/SyncLoader'
 import Navigation from './utils/Navigation'
+import { updateOnboardingStatus } from '../../actions'
 import {
   closeConnection,
   connectClient,
@@ -10,7 +11,9 @@ import {
   updateUserInfo,
 } from '../../utils/api'
 
-const Sync = ({ id, username, refreshToken, email, frequency, history }) => {
+const Sync = props => {
+  const { id, username, refreshToken, email, frequency, history } = props
+
   const [isConnected, setIsConnected] = useState(false)
   const [hasSyncedWithReddit, setHasSyncedWithReddit] = useState(false)
   const [syncStatus, setSyncStatus] = useState('not-started')
@@ -47,6 +50,12 @@ const Sync = ({ id, username, refreshToken, email, frequency, history }) => {
     setSyncStatus(sync_status)
   }
 
+  const completeOnboarding = async () => {
+    await updateUserInfo({ id, email, frequency })
+    props.updateOnboardingStatus()
+    history.push('/onboarding/success')
+  }
+
   if (!isConnected) return <p>Loading...</p>
 
   return (
@@ -72,10 +81,7 @@ const Sync = ({ id, username, refreshToken, email, frequency, history }) => {
       </button>
       <button
         style={{ display: syncStatus === 'successful' ? 'block' : 'none' }}
-        onClick={async () => {
-          await updateUserInfo({ id, email, frequency })
-          history.push('/onboarding/success')
-        }}
+        onClick={completeOnboarding}
       >
         Submit
       </button>
@@ -97,4 +103,4 @@ const mapStateToProps = state => ({
   frequency: state.onboarding.data.newsletterFrequency,
 })
 
-export default connect(mapStateToProps)(Sync)
+export default connect(mapStateToProps, { updateOnboardingStatus })(Sync)

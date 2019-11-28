@@ -12,6 +12,7 @@ export const SAVE_EMAIL = 'SAVE_EMAIL'
 export const UPDATE_EMAIL = 'UPDATE_EMAIL'
 export const SAVE_FREQUENCY_PREF = 'SAVE_FREQUENCY_PREF'
 export const UPDATE_FREQUENCY_PREF = 'UPDATE_FREQUENCY_PREF'
+export const UPDATE_ONBOARDING_STATUS = 'UPDATE_ONBOARDING_STATUS'
 
 export const retrieveRedditorInfo = ({
   accessToken,
@@ -53,4 +54,8 @@ export const registerUser = () => async (dispatch, getState) => {
     console.error(error)
     dispatch({ type: LOGIN_FAILURE })
   }
+}
+
+export const updateOnboardingStatus = () => dispatch => {
+  dispatch({ type: UPDATE_ONBOARDING_STATUS })
 }

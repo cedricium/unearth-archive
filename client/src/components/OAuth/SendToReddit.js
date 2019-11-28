@@ -5,7 +5,11 @@ import { Redirect } from 'react-router-dom'
 
 const SendToReddit = props => {
   if (props.auth.isLoggedIn) {
-    return <Redirect to='/onboarding' />
+    if (props.hasCompletedOnboarding) {
+      return <Redirect to='/onboarding/success' />
+    } else {
+      return <Redirect to='/onboarding' />
+    }
   }
   return (
     <OauthSender
@@ -20,6 +24,9 @@ const SendToReddit = props => {
   )
 }
 
-const mapStateToProps = state => ({ auth: state.auth })
+const mapStateToProps = state => ({
+  auth: state.auth,
+  hasCompletedOnboarding: state.onboarding.completed,
+})
 
 export default connect(mapStateToProps)(SendToReddit)

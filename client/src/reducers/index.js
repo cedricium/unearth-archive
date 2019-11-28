@@ -9,6 +9,7 @@ import {
   UPDATE_EMAIL,
   // SAVE_FREQUENCY_PREF,
   UPDATE_FREQUENCY_PREF,
+  UPDATE_ONBOARDING_STATUS,
 } from '../actions'
 
 const initialState = {
@@ -24,6 +25,7 @@ const initialState = {
   },
   error: null,
   onboarding: {
+    completed: false,
     data: {
       emailAddress: '',
       newsletterFrequency: 'daily',
@@ -63,7 +65,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         onboarding: {
-          ...state.onboarding.steps,
+          ...state.onboarding.completed,
           data: {
             ...state.onboarding.data,
             emailAddress: payload,
@@ -74,10 +76,20 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         onboarding: {
-          ...state.onboarding.steps,
+          ...state.onboarding.completed,
           data: {
             ...state.onboarding.data,
             newsletterFrequency: payload,
+          },
+        },
+      }
+    case UPDATE_ONBOARDING_STATUS:
+      return {
+        ...state,
+        onboarding: {
+          completed: true,
+          data: {
+            ...state.onboarding.data,
           },
         },
       }
