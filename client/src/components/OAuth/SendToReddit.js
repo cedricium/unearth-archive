@@ -3,6 +3,8 @@ import { OauthSender } from 'react-oauth-flow'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
+const CLIENT_URL = process.env.REACT_APP_CLIENT_URL || 'http://localhost:3000'
+
 const SendToReddit = props => {
   if (props.auth.isLoggedIn) {
     if (props.hasCompletedOnboarding) {
@@ -15,7 +17,7 @@ const SendToReddit = props => {
     <OauthSender
       authorizeUrl={process.env.REACT_APP_AUTHORIZATION_URL}
       clientId={process.env.REACT_APP_CLIENT_ID}
-      redirectUri='http://localhost:3000/auth/reddit'
+      redirectUri={`${CLIENT_URL}/auth/reddit`}
       response_type='token'
       state={{ from: '/' }}
       args={{ scope: 'history identity', duration: 'permanent' }}

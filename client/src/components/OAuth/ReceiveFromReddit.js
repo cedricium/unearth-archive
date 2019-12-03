@@ -6,6 +6,8 @@ import qs from 'querystring'
 import { connect } from 'react-redux'
 import { retrieveRedditorInfo, registerUser } from '../../actions'
 
+const CLIENT_URL = process.env.REACT_APP_CLIENT_URL || 'http://localhost:3000'
+
 const ReceiveFromReddit = props => {
   const handleSuccess = async (accessToken, { response, state }) => {
     const { access_token, refresh_token } = response
@@ -28,7 +30,7 @@ const ReceiveFromReddit = props => {
     const body = {
       grant_type: 'authorization_code',
       code,
-      redirect_uri: 'http://localhost:3000/auth/reddit',
+      redirect_uri: `${CLIENT_URL}/auth/reddit`,
     }
     const request = fetch(accessTokenUrl, {
       ...tokenFetchArgs,
@@ -58,7 +60,7 @@ const ReceiveFromReddit = props => {
       tokenUrl='https://www.reddit.com/api/v1/access_token'
       clientId={process.env.REACT_APP_CLIENT_ID}
       clientSecret={process.env.REACT_APP_CLIENT_SECRET}
-      redirectUri='http://localhost:3000/auth/reddit'
+      redirectUri={`${CLIENT_URL}/auth/reddit`}
       tokenFetchArgs={{
         method: 'POST',
         headers: {
