@@ -8,7 +8,7 @@ const apiBaseRouter = require('./api')
 const corsOptions = {
   origin: (origin, callback) => {
     if (process.env.NODE_ENV === 'production') {
-      if (origin !== 'https://tryunearth.com/') {
+      if (origin === 'https://tryunearth.com/') {
         callback(null, true)
       } else {
         callback(`Origin not allowed by CORS`)
