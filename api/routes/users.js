@@ -3,6 +3,24 @@ const db = require('../../database/config')
 
 router.get('/', async (req, res) => {})
 
+router.get('/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const [user] = await db('users').where({ id })
+    if (!user) {
+      return res.status(404).json({
+        error: 'Could not find user with the provided id!',
+      })
+    }
+    res.status(200).json(user)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({
+      error: 'An error occurred while processing your request.',
+    })
+  }
+})
+
 router.post('/', async (req, res) => {
   const { id, username } = req.body
   if (!id && !username) {
