@@ -5,7 +5,21 @@ const cors = require('cors')
 const helmet = require('helmet')
 const apiBaseRouter = require('./api')
 
-app.use(cors())
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (process.env.NODE_ENV === 'production') {
+      if (origin !== 'https://tryunearth.com/') {
+        callback(null, true)
+      } else {
+        callback(`Origin not allowed by CORS`)
+      }
+    } else {
+      callback(null, true)
+    }
+  },
+}
+
+app.use(cors(corsOptions))
 app.use(helmet())
 app.use(bodyParser.json())
 app.use('/api/v1', apiBaseRouter)
