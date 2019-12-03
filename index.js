@@ -1,7 +1,10 @@
 require('dotenv').config()
 const app = require('./app')
 const server = require('http').Server(app)
-const io = require('socket.io')(server)
+const io = require('socket.io')(server, {
+  origins:
+    process.env.NODE_ENV === 'production' ? 'https://www.tryunearth.com' : null,
+})
 
 const PORT = process.env.PORT || 5000
 
