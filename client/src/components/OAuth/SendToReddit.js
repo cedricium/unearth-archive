@@ -2,6 +2,7 @@ import React from 'react'
 import { OauthSender } from 'react-oauth-flow'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import Landing from '../Landing'
 
 const CLIENT_URL = process.env.REACT_APP_CLIENT_URL || 'http://localhost:3000'
 
@@ -21,7 +22,8 @@ const SendToReddit = props => {
       response_type='token'
       state={{ from: '/' }}
       args={{ scope: 'history identity', duration: 'permanent' }}
-      render={({ url }) => <a href={url}>Log in with Reddit</a>}
+      // render={({ url }) => <a href={url}>Log in with Reddit</a>}
+      render={({ url }) => <Landing url={url} />}
     />
   )
 }
