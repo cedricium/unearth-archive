@@ -88,4 +88,4 @@ const sendMail = async (frequency = 'daily') => {
   }
 }
 
-sendMail().catch(err => console.error(err))
+module.exports = { sendMail }
