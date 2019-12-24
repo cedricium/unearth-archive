@@ -1,12 +1,28 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const Success = () => {
+const Success = ({ frequency }) => {
+  const calculateNextEmailDelivery = () => {
+    switch (frequency) {
+      case 'daily':
+        return 'tomorrow'
+      case 'weekly':
+        return 'next Monday'
+      case 'monthly':
+        return 'on the 15th of next month'
+    }
+  }
+
   return (
     <div>
       <h2>Success!</h2>
       <p>
         You are all set. Keep an eye out on your inbox for your first
         personalized newsletter.
+      </p>
+      <p>
+        You can expect your first newsletter{' '}
+        <strong>{calculateNextEmailDelivery()}.</strong>
       </p>
       <p>
         {/* === TODO === */}
@@ -16,10 +32,14 @@ const Success = () => {
          *   updated.
          *
          */}
-        &lt; Back Home
+        {/* &lt; Back Home */}
       </p>
     </div>
   )
 }
 
-export default Success
+const mapStateToProps = state => ({
+  frequency: state.onboarding.data.newsletterFrequency,
+})
+
+export default connect(mapStateToProps)(Success)

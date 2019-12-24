@@ -85,11 +85,24 @@ const Sync = props => {
       >
         Submit
       </button>
-      <p>Current Sync Status: {syncStatus && syncStatus}</p>
-      <p>
-        {syncStatus === 'failed' &&
-          'An error occurred while syncing your saves!'}
-      </p>
+      <div
+        className='debugging-info'
+        style={{
+          display: process.env.NODE_ENV === 'production' ? 'none' : 'block',
+        }}
+      >
+        {/*
+         * Hide this simple debugging section when in production. If users face
+         * issues when in prod, can have them paste the following and report the
+         * error:
+         *    document.querySelector('.debugging-info').style.display = 'block'
+         */}
+        <p>Current Sync Status: {syncStatus && syncStatus}</p>
+        <p>
+          {syncStatus === 'failed' &&
+            'An error occurred while syncing your saves!'}
+        </p>
+      </div>
       <Navigation />
     </div>
   )
