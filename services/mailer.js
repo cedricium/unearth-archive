@@ -50,6 +50,7 @@ const sendMail = async (frequency = 'daily') => {
           user_id: user.id,
           surfaced: false,
         })
+        .whereNotNull('title')
         .limit(5)
 
       const email = new Email({})
