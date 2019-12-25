@@ -63,7 +63,7 @@ class RedditService {
             subreddit: save.subreddit.display_name,
             selftext: save.selftext,
             author_fullname: save.author_fullname,
-            title: save.title,
+            title: save.title || save.link_title,
             subreddit_name_prefixed: save.subreddit_name_prefixed,
             name: save.name,
             category: save.category,
