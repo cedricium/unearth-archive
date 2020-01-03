@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const db = require('../../database/config')
+const sendWelcomeEmail = require('../../mailers/sendWelcomeEmail')
 
 router.get('/', async (req, res) => {})
 
@@ -42,6 +43,7 @@ router.post('/', async (req, res) => {
 })
 
 router.patch('/:id', async (req, res) => {
+  const onboardingSuccess = req.query['onboarding-success']
   const { id } = req.params
   const { email, frequency } = req.body
   try {
@@ -54,6 +56,17 @@ router.patch('/:id', async (req, res) => {
     await db('users')
       .where({ id })
       .update({ ...user, email, frequency })
+    if (!!onboardingSuccess) {
+      const data = await db
+        .table('things')
+        .where({
+          user_id: user.id,
+          surfaced: false,
+        })
+        .whereNotNull('title')
+        .limit(5)
+      sendWelcomeEmail(user.email, data)
+    }
     res.status(204).end()
   } catch (error) {
     res.status(500).json({
