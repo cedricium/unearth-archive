@@ -102,8 +102,7 @@ unearth/
 ├── docs              # coming soon!
 ├── email-templates   # Pug.js email templates
 ├── jobs              # executed using cron
-├── services          # business logic for sending emails and connecting to Reddit
-└── scripts           # handy scripts used for development
+└── services          # business logic for sending emails and connecting to Reddit
 ```
 
 ### First-time Setup
