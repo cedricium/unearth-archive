@@ -21,7 +21,7 @@ const Success = ({ frequency }) => {
         personalized newsletter.
       </p>
       <p>
-        You can expect your first newsletter{' '}
+        You can expect your first scheduled newsletter{' '}
         <strong>{calculateNextEmailDelivery()}.</strong>
       </p>
       <p>

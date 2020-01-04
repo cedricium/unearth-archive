@@ -8,7 +8,10 @@ const socket = io(BACKEND_SOCKET_URL)
 
 export const updateUserInfo = async ({ id, email, frequency }) => {
   try {
-    await axios.patch(`${BACKEND_API_URL}/users/${id}`, { email, frequency })
+    await axios.patch(
+      `${BACKEND_API_URL}/users/${id}?onboarding-success=true`,
+      { email, frequency },
+    )
   } catch (error) {
     console.error(error)
   }
