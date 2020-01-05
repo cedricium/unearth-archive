@@ -65,7 +65,12 @@ router.patch('/:id', async (req, res) => {
         })
         .whereNotNull('title')
         .limit(5)
-      sendWelcomeEmail(user.email, data)
+      await sendWelcomeEmail(email, data)
+      for (let d of data) {
+        await db('things')
+          .where({ id: d.id })
+          .update({ surfaced: true })
+      }
     }
     res.status(204).end()
   } catch (error) {

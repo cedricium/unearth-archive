@@ -11,7 +11,12 @@ const transporter = nodemailer.createTransport({
 })
 
 module.exports = async mailOptions => {
-  const info = await transporter.sendMail(mailOptions)
-  console.log('Message sent: %s', info.messageId)
-  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
+  try {
+    const info = await transporter.sendMail(mailOptions)
+    console.log('Message sent: %s', info.messageId)
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
+  } catch (error) {
+    console.error('An error occurred while attempting to send the email!')
+    console.error(error)
+  }
 }
