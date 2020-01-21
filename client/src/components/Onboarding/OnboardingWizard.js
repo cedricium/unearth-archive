@@ -7,7 +7,7 @@ const Welcome = props => {
   return (
     <div>
       <h1>Welcome to Unearth</h1>
-      <h3>Background</h3>
+      <h2>Background</h2>
       <p>
         Unearth is a simple tool to help you rediscover all those things you've
         saved on Reddit. And by tool we actually mean a personalized email
@@ -28,7 +28,7 @@ const Welcome = props => {
         reminded of the posts and comments they have saved during their time on
         Reddit.
       </p>
-      <h3>How it Works</h3>
+      <h2>How it Works</h2>
       <p>
         Unearth is really pretty simple. You provide your email address and let
         us know how often you would like to receive emails. Then after syncing

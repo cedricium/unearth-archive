@@ -60,7 +60,7 @@ const Sync = props => {
 
   return (
     <div className='step_3'>
-      <h3>Step 3</h3>
+      <h1>Step 3</h1>
       <p>
         Let's sync your saved things. When you're ready, click the button below.
       </p>

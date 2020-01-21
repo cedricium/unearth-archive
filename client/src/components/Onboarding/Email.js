@@ -6,22 +6,24 @@ import Navigation from './utils/Navigation'
 const Email = props => {
   return (
     <div className='step_1'>
-      <h3>Step 1</h3>
+      <h1>Step 1</h1>
       <p>What is your email address?</p>
-      <input
-        type='email'
-        name='email'
-        id='email'
-        placeholder='snoo@reddit.com'
-        value={props.data.emailAddress}
-        onChange={e => {
-          e.preventDefault()
-          props.dispatch({
-            type: UPDATE_EMAIL,
-            payload: e.target.value,
-          })
-        }}
-      />
+      <form>
+        <input
+          type='email'
+          name='email'
+          id='email'
+          placeholder='snoo@reddit.com'
+          value={props.data.emailAddress}
+          onChange={e => {
+            e.preventDefault()
+            props.dispatch({
+              type: UPDATE_EMAIL,
+              payload: e.target.value,
+            })
+          }}
+        />
+      </form>
       <Navigation />
     </div>
   )

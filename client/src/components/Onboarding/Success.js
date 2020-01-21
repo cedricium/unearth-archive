@@ -15,14 +15,14 @@ const Success = ({ frequency }) => {
 
   return (
     <div>
-      <h2>Success!</h2>
+      <h1>Success!</h1>
       <p>
-        You are all set. Keep an eye out on your inbox for your first
-        personalized newsletter.
+        You are all set. Check your inbox for your first personalized
+        newsletter.
       </p>
       <p>
         You can expect your first scheduled newsletter{' '}
-        <strong>{calculateNextEmailDelivery()}.</strong>
+        <u>{calculateNextEmailDelivery()}.</u>
       </p>
       <p>
         {/* === TODO === */}
