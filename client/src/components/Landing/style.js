@@ -3,7 +3,6 @@ import topographyBackground from './topography.svg'
 import 'animate.css'
 
 export const GlobalStyle = createGlobalStyle`
-  /* @import url('https://fonts.googleapis.com/css?family=Merriweather:700&display=swap'); */
   @import url('https://rsms.me/inter/inter.css');
 
   * {

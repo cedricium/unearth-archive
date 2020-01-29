@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom'
 import { Email, Frequency, Sync, Success } from '../Onboarding'
 import styled from 'styled-components'
 
+import { OnboardingGlobalStyle } from './style'
+
 const Welcome = props => {
   return (
     <div>
@@ -61,6 +63,7 @@ const OnboardingContainer = props => (
 const Onboarding = () => {
   return (
     <OnboardingContainer>
+      <OnboardingGlobalStyle />
       <Switch>
         <Route path='/onboarding' exact component={Welcome} />
         <Route path='/onboarding/email' component={Email} />
