@@ -1,11 +1,10 @@
 import React from 'react'
 import { navigate } from 'gatsby'
 import { connect } from 'react-redux'
-// import { withRouter } from 'react-router-dom'
 import { OauthReceiver } from 'react-oauth-flow'
 import qs from 'querystring'
 
-import { retrieveRedditorInfo, registerUser } from '../../redux/redux-wrapper'
+import { retrieveRedditorInfo, registerUser } from '../../redux/actions'
 
 const CLIENT_URL = process.env.REACT_APP_CLIENT_URL || 'http://localhost:8000'
 
