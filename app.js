@@ -1,8 +1,9 @@
 const express = require('express')
-const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const helmet = require('helmet')
+const logger = require('morgan')
+
 const apiBaseRouter = require('./api')
 
 const corsOptions = {
@@ -23,6 +24,8 @@ const corsOptions = {
   },
 }
 
+const app = express()
+app.use(logger('dev'))
 app.use(cors(corsOptions))
 app.use(helmet())
 app.use(bodyParser.json())
