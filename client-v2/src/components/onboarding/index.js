@@ -9,7 +9,6 @@ import Success from './success'
 
 const Onboarding = () => (
   <div>
-    <h1>Onboarding</h1>
     <Router>
       <Welcome path='/' />
       <Email path='email' />
