@@ -34,6 +34,16 @@ const Layout = ({ hideHeader, children }) => {
         }}
       >
         <main>{children}</main>
+        <footer>
+          <p>
+            © {new Date().getFullYear()}
+            {` `}&middot;{` `}Unearth
+          </p>
+          <p>
+            For any questions or concerns, please feel free to reach out to
+            <a href='mailto:hello@tryunearth.com'>hello@tryunearth.com</a>
+          </p>
+        </footer>
         {/* <footer>
           © {new Date().getFullYear()}, Built with
           {` `}

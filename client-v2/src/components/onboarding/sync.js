@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import SyncLoader from 'react-spinners/SyncLoader'
 
 import Navigation from './utils/navigation'
 import { updateOnboardingStatus } from '../../redux/actions'
@@ -70,9 +71,9 @@ const Sync = props => {
           you have saved. Do not close this tab or refresh the page.
         </small>
       </p>
-      {/* {syncStatus === 'in-progress' && (
+      {syncStatus === 'in-progress' && (
         <SyncLoader size={8} sizeUnit={'px'} loading={true} />
-      )} */}
+      )}
       <button
         style={{ display: syncStatus === 'not-started' ? 'block' : 'none' }}
         onClick={() => syncSaves()}

@@ -26,7 +26,7 @@ const Success = ({ frequency }) => {
         <u>{calculateNextEmailDelivery()}.</u>
       </p>
       <p>
-        <Link to='/app/profile'>View Profile</Link>
+        <Link to='/app/account'>View Account Settings</Link>
       </p>
     </div>
   )
