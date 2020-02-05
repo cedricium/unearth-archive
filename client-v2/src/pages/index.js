@@ -1,284 +1,125 @@
-// import React from 'react'
-// import { Link } from 'gatsby'
-
-// import Layout from '../components/layout'
-// import Image from '../components/image'
-// import SEO from '../components/seo'
-
-// const IndexPage = () => (
-//   <Layout>
-//     <SEO title='Home' />
-//     <h1>Hi people</h1>
-//     <p>Welcome to your new Gatsby site.</p>
-//     <p>Now go build something great.</p>
-//     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-//       <Image />
-//     </div>
-//     <Link to='/app/'>Go to App</Link>
-//   </Layout>
-// )
-
-// export default IndexPage
-
 import React from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
-// import {
-//   GlobalStyle,
-//   Wrapper,
-//   Container,
-//   Header,
-//   Navbar,
-//   NavLink,
-//   Main,
-//   CTAButton,
-//   Footer,
-//   Title,
-//   Subtitle,
-// } from './style'
-// import Logo from './unearth-logo.svg'
-// import topographyBackground from './topography.svg'
-// import 'animate.css'
+import { Box, Clock, Loader } from 'react-feather'
 
+import Layout from '../components/layout'
+import Image from '../components/image'
+import SEO from '../components/seo'
 import SendToReddit from '../components/oauth/send-to-reddit'
 
-export const GlobalStyle = createGlobalStyle`
-  @import url('https://rsms.me/inter/inter.css');
+import {
+  IndexGlobalStyle,
+  Hero,
+  FeatureWrapper,
+  Heading,
+  Subheading,
+  LoginCTA,
+  SecondaryCTA,
+  HeroImageWrapper,
+  HeroContentWrapper,
+} from '../styles/index.styles'
 
-  * {
-    box-sizing: border-box;
-  }
+const features = [
+  {
+    icon: 'loader',
+    title: 'Experience nostalgia',
+    body:
+      'Remember saving that one really cute cat gif because it reminded you of your own cat? Prepare to experience a range of emotions as you are reminded of the things you have saved.',
+  },
+  {
+    icon: 'box',
+    title: 'Manage your saved content',
+    body:
+      'All of the links in your personalized newsletter link directly to the Reddit post or comment you saved, making it easy to unsave things you no longer need.',
+  },
+  {
+    icon: 'clock',
+    title: 'Go at your own pace',
+    body:
+      'Choose between receiving daily, weekly, or monthly emails. Perfect for the person who has a lot of saves and wants to sift through them quickly or the person who just likes delaying instant gratification.',
+  },
+]
 
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-display: swap;
-    font-weight: 400;
-    background: #22292f;
-    background-size: cover;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
-    font-display: swap;
-  }
-`
-
-export const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-`
-
-export const Container = styled.div`
-  margin: 0 auto;
-  padding: 0;
-  width: 100%;
-  height: 100vh;
-  max-width: 1152px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: 1152px) {
-    padding: 0 20px;
-  }
-`
-
-export const Header = styled.header`
-  width: 100%;
-  height: 100px;
-  color: #ffffff;
-  font-size: 16px;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: 425px) {
-    /* height: 80px; */
-  }
-`
-
-export const Navbar = styled.nav`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  & > .nav-main {
-    flex: 1;
-  }
-  & > .nav-secondary {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    flex: 2;
-  }
-
-  @media (max-width: 685px) {
-    /* show hamburger menu */
-    & > .nav-secondary {
-      display: none;
-    }
-  }
-`
-
-export const NavLink = styled.a`
-  margin: 0 0 0 30px;
-  color: #ffffff;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`
-
-export const Main = styled.main`
-  max-width: 960px;
-  width: 100%;
-  color: #ffffff;
-  flex: 5;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  @media (max-width: 425px) {
-    justify-content: flex-start;
-  }
-`
-
-export const Title = styled.h1`
-  font-size: 50px;
-
-  @media (max-width: 425px) {
-    font-size: 36px;
-    text-align: left;
-  }
-
-  @media (max-width: 972px) {
-    font-size: 30px;
-  }
-`
-
-export const Subtitle = styled.p`
-  color: #e0e0e0;
-  margin: 0;
-  padding: 0;
-  font-size: 24px;
-  line-height: 150%;
-  width: 100%;
-  max-width: 816px;
-
-  @media (max-width: 425px) {
-    text-align: left;
-  }
-
-  @media (max-width: 972px) {
-    font-size: 20px;
-  }
-`
-
-export const CTAButton = styled.a`
-  /*
-    S/O to the OGs at CSS Tricks
-    References: https://css-tricks.com/css-basics-styling-links-like-boss/
-  */
-  margin: 30px 0 0 0;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: #ff4500;
-  box-shadow: 0 5px 0 darkred;
-  color: #ffffff;
-  padding: 16px 24px;
-  text-decoration: none;
-
-  &:hover {
-    background-color: #ce0606;
-    cursor: pointer;
-  }
-
-  &:active {
-    box-shadow: none;
-  }
-
-  @media (max-width: 425px) {
-    width: 100%;
-  }
-`
-
-export const Footer = styled.footer`
-  width: 100%;
-  flex: 1;
-`
-
-const IndexPage = ({ url }) => {
-  return (
-    <>
-      <GlobalStyle />
-      <Wrapper>
-        <Container>
-          <Header>
-            <Navbar>
-              <div className='nav-main'>
-                {/* <img src={Logo} alt='unearth' /> */}
-              </div>
-              <div className='nav-secondary'>
-                {/* <NavLink href='' className='nav-link'>
-                  About
-                </NavLink>
-                <NavLink href='' className='nav-link'>
-                  Open Source
-                </NavLink> */}
-                <NavLink
-                  href='https://twitter.com/tryunearth'
-                  className='nav-link'
-                >
-                  Twitter
-                </NavLink>
-                <NavLink
-                  href='https://www.reddit.com/r/tryunearth/'
-                  className='nav-link'
-                >
-                  Official Subreddit
-                </NavLink>
-                <NavLink href={url} className='nav-link'>
-                  Sign up using Reddit
-                </NavLink>
-              </div>
-            </Navbar>
-          </Header>
-          <Main>
-            <Title className='animated fadeInUp fast'>
-              Personalized emails with your Reddit saves delivered right to your
-              inbox.
-            </Title>
-            <Subtitle className='animated fadeInUp fast'>
-              Recurring emails personalized with your Reddit saves are delivered
-              at the interval of your choosing, making Unearth a great way to
-              rediscover all those memes and cat photos you’ve saved over the
-              years.
-            </Subtitle>
-            <SendToReddit />
-            {/* <CTAButton href={url} className='animated fadeInUp fast'>
-              Get Started using Reddit
-            </CTAButton> */}
-          </Main>
-          <Footer />
-        </Container>
-      </Wrapper>
-    </>
-  )
+const namesToIcon = {
+  loader: <Loader size={48} strokeWidth={2} />,
+  box: <Box size={48} strokeWidth={2} />,
+  clock: <Clock size={48} strokeWidth={2} />,
 }
+
+const Feature = ({ icon, title, body }) => (
+  <FeatureWrapper>
+    {namesToIcon[icon]}
+    <p style={{ fontWeight: 'bold' }}>{title}</p>
+    <p>{body}</p>
+  </FeatureWrapper>
+)
+
+const IndexPage = () => (
+  <Layout hideHeader>
+    <SEO title='Home' />
+    <IndexGlobalStyle />
+    <section>
+      <Hero>
+        <HeroImageWrapper>
+          <Image />
+        </HeroImageWrapper>
+        <HeroContentWrapper>
+          <Heading>Stop forgetting about your Reddit saves</Heading>
+          <Subheading>
+            Receive personalized newsletters with a handful of your Reddit saves
+            at the interval of your choosing and rediscover the amazing content
+            you’ve forgotten all about.
+          </Subheading>
+          <div
+            style={{
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+            }}
+          >
+            <SendToReddit component={LoginCTA} />
+            {` `}
+            <SecondaryCTA href='https://github.com/cedricium/unearth'>
+              View the Source Code
+            </SecondaryCTA>
+          </div>
+        </HeroContentWrapper>
+      </Hero>
+    </section>
+    <section
+      style={{
+        margin: '3rem 0',
+        width: '100vw',
+        position: 'relative',
+        left: 'calc(-50vw + 50%)',
+        minHeight: '300px',
+        background: '#030047',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+      }}
+    >
+      <div></div>
+      <div></div>
+    </section>
+    <section>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-evenly',
+          alignItems: 'flex-start',
+        }}
+      >
+        {features.map((f, idx) => (
+          <Feature id={idx} {...f} />
+        ))}
+      </div>
+    </section>
+  </Layout>
+)
 
 export default IndexPage

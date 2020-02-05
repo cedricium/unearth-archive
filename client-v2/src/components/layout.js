@@ -12,7 +12,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import Header from './header'
 import './layout.css'
 
-const Layout = ({ hideHeader, children }) => {
+const Layout = ({ hideHeader, maxWidth, children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -29,7 +29,7 @@ const Layout = ({ hideHeader, children }) => {
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
+          maxWidth: maxWidth || 1350,
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
@@ -40,15 +40,10 @@ const Layout = ({ hideHeader, children }) => {
             {` `}&middot;{` `}Unearth
           </p>
           <p>
-            For any questions or concerns, please feel free to reach out to
+            For any questions or concerns, please feel free to reach out to{` `}
             <a href='mailto:hello@tryunearth.com'>hello@tryunearth.com</a>
           </p>
         </footer>
-        {/* <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href='https://www.gatsbyjs.org'>Gatsby</a>
-        </footer> */}
       </div>
     </>
   )

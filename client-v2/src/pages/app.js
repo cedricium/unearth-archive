@@ -1,8 +1,6 @@
 import React from 'react'
 import { Router } from '@reach/router'
 
-import AppGlobalStyle from './app-styles'
-
 import Layout from '../components/layout'
 import PrivateRoute from '../components/private-route'
 import ReceiveFromReddit from '../components/oauth/receive-from-reddit'
@@ -13,8 +11,10 @@ import Account from '../components/account'
 
 import requireOnboardingComplete from '../components/hoc/require-onboarding-complete'
 
+import AppGlobalStyle from '../styles/app.styles'
+
 const AppPage = () => (
-  <Layout hideHeader>
+  <Layout hideHeader maxWidth={960}>
     <AppGlobalStyle />
     <Router>
       <PrivateRoute path='/app/onboarding/*' component={Onboarding} />
