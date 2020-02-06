@@ -40,6 +40,7 @@ export const Section = styled.section`
   ${props =>
     props.primary &&
     css`
+      margin: 60px 0 0;
       padding: 40px 0;
       position: relative;
       width: 100vw;
@@ -195,6 +196,7 @@ export const Footer = styled.footer`
   align-items: center;
 
   @media (max-width: 860px) {
+    padding: 0;
     flex-direction: column;
   }
 `
@@ -210,15 +212,25 @@ export const FooterSectionLeft = styled.div`
 
 export const FooterSectionRight = styled.div`
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 
   @media (max-width: 860px) {
+    min-width: 80%;
     margin: 20px 0 0;
     padding: 0 20px;
+  }
+
+  @media (max-width: 560px) {
+    flex-direction: column;
+
+    & a {
+      margin: 0 0 16px;
+      font-size: 18px;
+    }
   }
 
   & a {
