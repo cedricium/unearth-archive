@@ -14,7 +14,7 @@ import requireOnboardingComplete from '../components/hoc/require-onboarding-comp
 import AppGlobalStyle from '../styles/app.styles'
 
 const AppPage = () => (
-  <Layout hideHeader maxWidth={960}>
+  <Layout hideHeader>
     <AppGlobalStyle />
     <Router>
       <PrivateRoute path='/app/onboarding/*' component={Onboarding} />

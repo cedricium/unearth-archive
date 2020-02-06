@@ -1,10 +1,11 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, { css, createGlobalStyle } from 'styled-components'
 
 export const IndexGlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
 
+  html,
   body {
     margin: 0;
     padding: 0;
@@ -14,120 +15,226 @@ export const IndexGlobalStyle = createGlobalStyle`
     font-weight: 400;
     overflow-x: hidden;
   }
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
 `
 
-export const Hero = styled.div`
-  margin: 2rem auto 6rem;
+export const Section = styled.section`
   width: 100%;
-  min-height: 70vh;
+  padding: 0 20px;
+  height: auto;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 
-  @media (max-width: 890px) {
-    flex-wrap: wrap;
-  }
+  ${props =>
+    props.fullHeight &&
+    css`
+      min-height: 80vh;
+    `}
+
+  ${props =>
+    props.primary &&
+    css`
+      padding: 40px 0;
+      position: relative;
+      width: 100vw;
+      left: calc(-50vw + 50%);
+
+      font-size: 16px;
+      color: #ffffff;
+      background: #030047;
+    `}
 `
 
-export const FeatureWrapper = styled.div`
+export const SectionWrapper = styled.div`
+  margin: 20px 0;
   width: 100%;
-  max-width: 310px;
+  display: flex;
+  flex-direction: row;
+  justify-content: ${props => props.justifyContent || 'space-around'};
+  align-items: center;
 
-  @media (max-width: 990px) {
-    max-width: 100%;
-    width: 100%;
-    margin: 0 0 2rem;
+  @media (max-width: 860px) {
+    flex-direction: column;
   }
 `
 
-export const Heading = styled.h1`
-  margin: 0 auto 1rem;
-  font-weight: 800;
-  font-size: 54px;
-  line-height: 70px;
+export const HeroContent = styled.div`
+  max-width: 450px;
+
+  @media (max-width: 860px) {
+    max-width: 500px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`
+
+export const ImageWrapper = styled.div`
+  width: 100%;
+  max-width: ${props => props.width || '400px'};
+
+  @media (max-width: 860px) {
+    margin: ${props => props.margin || '50px 0'};
+  }
+`
+
+export const Title = styled.h1`
+  margin: 30px 0 10px;
+  font-size: 42px;
+  line-height: 62px;
   color: #030047;
 
-  @media (max-width: 600px) {
-    font-size: 40px;
+  @media (max-width: 860px) {
+    font-size: 34px;
     line-height: unset;
   }
 `
 
 export const Subheading = styled.p`
-  margin: 0 auto 2rem;
-  max-width: 800px;
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 31px;
+  font-size: 20px;
+  line-height: 29px;
   color: #22292f;
-
-  @media (max-width: 600px) {
-    font-size: 18px;
-    line-height: 26px;
-  }
 `
 
-export const LoginCTA = styled.a`
-  margin: 0;
-  padding: 12px 20px;
-  background: #5f5fff;
-  border-radius: 8px;
-  color: #ffffff;
-  font-size: 18px;
-  line-height: 28px;
-  text-decoration: none;
-
-  @media (max-width: 600px) {
-    font-size: 16px;
-    line-height: unset;
-  }
-
-  @media (max-width: 890px) {
-    text-align: center;
-    width: 100%;
-  }
-`
-
-export const SecondaryCTA = styled.a`
-  margin: 0 0 0 1rem;
-  color: #5f5fff;
-  font-size: 18px;
-  line-height: 28px;
-  text-decoration: none;
-
-  @media (max-width: 600px) {
-    font-size: 16px;
-    line-height: unset;
-  }
-
-  @media (max-width: 890px) {
-    text-align: center;
-    width: 100%;
-    margin: 1rem auto 0;
-  }
-`
-
-export const HeroImageWrapper = styled.div`
-  margin: 0 2rem 0 0;
-  max-width: 645px;
-  width: 100%;
-  order: 2;
-
-  @media (max-width: 890px) {
-    max-width: 100%;
-    margin: 4rem 0 0;
-  }
-`
-
-export const HeroContentWrapper = styled.div`
-  max-width: 600px;
+export const ExternalLink = styled.a`
+  margin: 20px 0;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  color: #ff3e6c;
+  text-decoration-style: dotted;
+`
 
-  @media (max-width: 890px) {
-    max-width: 100%;
+export const LinkButton = styled.a`
+  margin: 20px 0;
+  width: 260px;
+  display: flex;
+  justify-content: center;
+
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 26px;
+  color: #ffffff;
+  padding: 10px 20px;
+  background: #ff3e6c;
+  border-radius: 8px;
+
+  text-decoration: none;
+`
+
+export const FeatureContent = styled.div`
+  max-width: 350px;
+  margin: 120px 0;
+
+  @media (max-width: 860px) {
+    order: 0 !important;
+    max-width: 600px;
+    margin: 30px 0 0;
+
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`
+
+export const Header = styled.h2`
+  margin: 0 0 10px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 41px;
+  color: #030047;
+
+  @media (max-width: 860px) {
+    font-size: 24px;
+    line-height: unset;
+  }
+`
+
+export const Text = styled.p`
+  font-size: 18px;
+  line-height: 26px;
+  color: #22292f;
+`
+
+export const HorizontalRule = styled.hr`
+  border: none;
+  height: 1px;
+  background: #e8e8e8;
+  position: relative;
+  width: 100vw;
+  left: calc(-50vw + 50%);
+`
+
+export const CreatorText = styled.p`
+  color: #94a1b8;
+
+  & a {
+    color: #ffffff;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+`
+
+export const Footer = styled.footer`
+  margin: 20px 0 0;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 860px) {
+    flex-direction: column;
+  }
+`
+
+export const FooterSectionLeft = styled.div`
+  width: 100%;
+  max-width: 280px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`
+
+export const FooterSectionRight = styled.div`
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 860px) {
+    margin: 20px 0 0;
+    padding: 0 20px;
+  }
+
+  & a {
+    text-decoration: none;
+    color: #ffffff;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+  }
+`
+
+export const FooterIconsWrapper = styled.div`
+  & a {
+    color: #ffffff;
+    margin: 0 0 0 20px;
   }
 `

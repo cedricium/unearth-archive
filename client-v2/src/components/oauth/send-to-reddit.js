@@ -2,7 +2,7 @@ import React from 'react'
 import { OauthSender } from 'react-oauth-flow'
 
 const CLIENT_URL = process.env.REACT_APP_CLIENT_URL || 'http://localhost:8000'
-const SendToReddit = ({ component: Anchor }) => {
+const SendToReddit = ({ component: Anchor, value }) => {
   return (
     <OauthSender
       authorizeUrl={process.env.REACT_APP_AUTHORIZATION_URL}
@@ -11,7 +11,7 @@ const SendToReddit = ({ component: Anchor }) => {
       response_type='token'
       state={{ from: '/' }}
       args={{ scope: 'history identity', duration: 'permanent' }}
-      render={({ url }) => <Anchor href={url}>Get Started Using Reddit</Anchor>}
+      render={({ url }) => <Anchor href={url}>{value}</Anchor>}
     />
   )
 }

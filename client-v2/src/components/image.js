@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
 /*
@@ -11,22 +11,42 @@ import Img from 'gatsby-image'
  * For more information, see the docs:
  * - `gatsby-image`: https://gatsby.dev/gatsby-image
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
+ *
+ * Note: this is a modified version of the default Gatsby image component which
+ * allows for reusability.
+ *
+ * * References: https://stackoverflow.com/a/56508865/6698029
  */
-
-const Image = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      placeholderImage: file(relativePath: { eq: "hero-illustration-2.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 1020, quality: 100) {
-            ...GatsbyImageSharpFluid
+const Image = ({ filename, alt }) => (
+  <StaticQuery
+    query={graphql`
+      query {
+        images: allFile {
+          edges {
+            node {
+              relativePath
+              name
+              childImageSharp {
+                fluid(maxWidth: 960, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
-    }
-  `)
+    `}
+    render={data => {
+      const image = data.images.edges.find(n => {
+        return n.node.relativePath.includes(filename)
+      })
+      if (!image) {
+        return null
+      }
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
-}
+      return <Img alt={alt} fluid={image.node.childImageSharp.fluid} />
+    }}
+  />
+)
 
 export default Image
