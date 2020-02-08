@@ -1,11 +1,11 @@
 require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`, // or '.env'
+  path: `.env.${process.env.NODE_ENV}`,
 })
 
 module.exports = {
   siteMetadata: {
     title: `Unearth - Like Timehop for Reddit Saves`,
-    description: `Unearth aims to be the best service to help Redditors rediscover the things they have saved through the use of active reminders.`,
+    description: `Personalized emails with your Reddit saves delivered right to your inbox.`,
     author: `@cedricamaya`,
   },
   plugins: [
