@@ -5,7 +5,7 @@ const { generateHash } = require('../../utils')
 const mailOptions = async (address, locals) => {
   try {
     const email = new Email()
-    const html = await email.render('newsletter/html', locals)
+    const html = await email.render('welcome/html', locals)
     return {
       from: '"Cedric from Unearth" <hello@tryunearth.com>',
       to: address,
