@@ -2,8 +2,6 @@ const router = require('express').Router()
 const db = require('../../database/config')
 const sendWelcomeEmail = require('../../mailers/sendWelcomeEmail')
 
-router.get('/', async (req, res) => {})
-
 router.get('/:id', async (req, res) => {
   const { id } = req.params
   try {
