@@ -3,7 +3,7 @@ path: '/acknowledgements'
 title: 'Acknowledgements'
 ---
 
-**Last updated February 5, 2020**
+**Last updated February 14, 2020**
 
 ## Miscellaneous
 
@@ -12,10 +12,8 @@ we would like to show our appreciation to the following organizations for the
 resources they have provided for free:
 
 - Icons located in the footer from [Feather Icons](https://feathericons.com/)
-- Footer illustration, courtesy [Icons8](https://icons8.com/)
-- "Control" illustrations on the landing page, courtesy [Craftwork](https://craftwork.design/)
 - Shovel in Unearth logo by Parallel Digital Studio from the [Noun Project](https://thenounproject.com/Parallel/)
-- "Heebo" font from multiple designers, listed on [Google Fonts](https://fonts.google.com/specimen/Heebo)
+- Topography SVG courtesy of Steve Schoger from [Hero Patterns](https://www.heropatterns.com/)
 
 ## Open Source Licenses
 
