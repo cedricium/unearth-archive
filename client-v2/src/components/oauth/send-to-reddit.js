@@ -11,7 +11,11 @@ const SendToReddit = ({ component: Anchor, value }) => {
       response_type='token'
       state={{ from: '/' }}
       args={{ scope: 'history identity', duration: 'permanent' }}
-      render={({ url }) => <Anchor href={url}>{value}</Anchor>}
+      render={({ url }) => (
+        <Anchor primary href={url}>
+          {value}
+        </Anchor>
+      )}
     />
   )
 }

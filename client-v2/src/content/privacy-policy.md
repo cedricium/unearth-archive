@@ -1,5 +1,5 @@
 ---
-path: '/privacy-policy'
+path: '/privacy'
 title: 'Privacy Policy'
 ---
 

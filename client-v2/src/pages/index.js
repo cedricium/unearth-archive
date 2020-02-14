@@ -10,6 +10,7 @@ import SendToReddit from '../components/oauth/send-to-reddit'
 
 import {} from '../styles/index.styles'
 
+import TopographyBackground from '../images/topography-background.svg'
 const IndexGlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
@@ -19,7 +20,7 @@ const IndexGlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: 'CircularStd', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    font-family: CircularStd, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #000000;
   }
@@ -31,6 +32,11 @@ const Main = styled.main`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+
+  @media (max-width: 400px) {
+    height: unset;
+    min-height: unset;
+  }
 `
 
 const Section = styled.section`
@@ -53,12 +59,13 @@ const Hero = styled(Section)`
   }
 
   @media (max-width: 680px) {
-    padding: 60px 10px 0;
+    padding: 20px 10px 0;
   }
 `
 
 const BackgroundSection = styled(Section)`
-  background: #ff5c00;
+  background-color: #ff5c00;
+  background-image: url(${TopographyBackground});
 
   @media (max-width: 720px) {
     flex-grow: 0;
@@ -69,7 +76,7 @@ const Header = styled.h1`
   margin: 0 0 20px;
   max-width: 470px;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 46px;
   line-height: 58px;
   color: #000000;
@@ -87,11 +94,19 @@ const Subheader = styled.p`
 
 const Button = styled.a`
   display: inline-flex;
+  text-align: center;
+  justify-content: center;
   padding: 10px 20px;
   border-radius: 10px;
   text-decoration: none;
   color: #000000;
+  font-size: 18px;
   font-weight: 100;
+
+  @media (max-width: 420px) {
+    width: 100%;
+    margin: 0 0 10px;
+  }
 
   ${props =>
     props.primary &&
@@ -109,7 +124,7 @@ const Button = styled.a`
 `
 
 const Footer = styled.footer`
-  padding: 0 10px 0 0;
+  padding: 0 20px 0 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -127,6 +142,28 @@ const Footer = styled.footer`
   }
 `
 
+const FooterColumn = styled.div`
+  display: inline-flex;
+  align-items: center;
+
+  @media (max-width: 420px) {
+    ${props =>
+      props.right &&
+      css`
+        & {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        & a {
+          margin: 10px;
+        }
+      `}
+  }
+`
+
+const CTAButton = <Button primary>Get Started Using Reddit</Button>
+
 const IndexPage = () => (
   <Main>
     <SEO title='Home' />
@@ -143,9 +180,7 @@ const IndexPage = () => (
           content you’ve forgotten about.
         </Subheader>
         <div style={{ margin: '40px 0' }}>
-          <Button primary href=''>
-            Get Started Using Reddit
-          </Button>
+          <SendToReddit component={Button} value='Get Started Using Reddit' />
           {` `}
           <Button link href=''>
             View the Source Code
@@ -153,7 +188,7 @@ const IndexPage = () => (
         </div>
       </article>
       <Footer>
-        <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+        <FooterColumn>
           <p>© 2020 · Unearth</p>
           <a href='https://twitter.com/tryunearth'>
             <Twitter />
@@ -164,12 +199,12 @@ const IndexPage = () => (
           <a href='https://reddit.com/r/tryunearth'>
             <Users />
           </a>
-        </div>
-        <div>
+        </FooterColumn>
+        <FooterColumn right>
           <Link to='/acknowledgements'>Acknowledgements</Link>
           <Link to='/privacy'>Privacy Policy</Link>
           <Link to='/terms'>Terms of Service</Link>
-        </div>
+        </FooterColumn>
       </Footer>
     </Hero>
     <BackgroundSection />

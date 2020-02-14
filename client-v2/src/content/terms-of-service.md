@@ -1,5 +1,5 @@
 ---
-path: '/terms-of-service'
+path: '/terms'
 title: 'Terms of Service'
 ---
 
