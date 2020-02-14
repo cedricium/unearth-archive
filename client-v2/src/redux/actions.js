@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const BACKEND_API_URL =
-  process.env.REACT_APP_BACKEND_API_URL || `http://localhost:5000/api/v1`
+  process.env.GATSBY_BACKEND_API_URL || `http://localhost:5000/api/v1`
 
 export const LOGIN_START = 'LOGIN_START'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'

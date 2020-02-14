@@ -33,7 +33,7 @@ const Account = ({ username, id }) => {
     validate,
     onSubmit: async (values, actions) => {
       const { status } = await axios.patch(
-        `${process.env.REACT_APP_BACKEND_API_URL}/users/${id}`,
+        `${process.env.GATSBY_BACKEND_API_URL}/users/${id}`,
         values,
       )
       if (status !== 204) {
@@ -55,14 +55,14 @@ const Account = ({ username, id }) => {
 
   const fetchUserAccount = async () => {
     const { data } = await axios.get(
-      `${process.env.REACT_APP_BACKEND_API_URL}/users/${id}`,
+      `${process.env.GATSBY_BACKEND_API_URL}/users/${id}`,
     )
     return data
   }
 
   const deleteUserAccount = async () => {
     const { status } = await axios.delete(
-      `${process.env.REACT_APP_BACKEND_API_URL}/users/${id}`,
+      `${process.env.GATSBY_BACKEND_API_URL}/users/${id}`,
     )
     if (status === 204) {
       localStorage.clear()

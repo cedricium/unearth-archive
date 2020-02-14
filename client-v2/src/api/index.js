@@ -1,8 +1,8 @@
 import axios from 'axios'
 import io from 'socket.io-client'
 
-const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL
-const BACKEND_SOCKET_URL = process.env.REACT_APP_BACKEND_SOCKET_URL
+const BACKEND_API_URL = process.env.GATSBY_BACKEND_API_URL
+const BACKEND_SOCKET_URL = process.env.GATSBY_BACKEND_SOCKET_URL
 
 const socket = io(BACKEND_SOCKET_URL)
 

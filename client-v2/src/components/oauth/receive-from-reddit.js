@@ -7,7 +7,7 @@ import axios from 'axios'
 
 import { retrieveRedditorInfo, registerUser } from '../../redux/actions'
 
-const CLIENT_URL = process.env.REACT_APP_CLIENT_URL || 'http://localhost:8000'
+const CLIENT_URL = process.env.GATSBY_CLIENT_URL || 'http://localhost:8000'
 
 const ReceiveFromReddit = props => {
   const handleSuccess = async (accessToken, { response, state }) => {
@@ -34,7 +34,7 @@ const ReceiveFromReddit = props => {
         redirect_uri: `${CLIENT_URL}/app/auth/reddit`,
       }
 
-      const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL
+      const BACKEND_API_URL = process.env.GATSBY_BACKEND_API_URL
       const redditProxyAccessTokenUrl = `${BACKEND_API_URL}/reddit/access_token`
       const { data } = await axios.post(redditProxyAccessTokenUrl, body)
 
@@ -46,22 +46,13 @@ const ReceiveFromReddit = props => {
 
   const redirect = to => navigate(to)
 
-  const bearerToken = btoa(
-    `${process.env.REACT_APP_CLIENT_ID}:${process.env.REACT_APP_CLIENT_SECRET}`,
-  )
   return (
     <OauthReceiver
       tokenUrl='https://www.reddit.com/api/v1/access_token'
-      clientId={process.env.REACT_APP_CLIENT_ID}
-      clientSecret={process.env.REACT_APP_CLIENT_SECRET}
+      clientId={process.env.GATSBY_CLIENT_ID}
+      clientSecret='_'
       redirectUri={`${CLIENT_URL}/app/auth/reddit`}
-      tokenFetchArgs={{
-        method: 'POST',
-        headers: {
-          Authorization: `Basic ${bearerToken}`,
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      }}
+      tokenFetchArgs={{}}
       tokenFn={fetchToken}
       onAuthSuccess={handleSuccess}
       onAuthError={handleError}
