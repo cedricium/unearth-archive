@@ -182,7 +182,7 @@ const IndexPage = () => (
         <div style={{ margin: '40px 0' }}>
           <SendToReddit component={Button} value='Get Started Using Reddit' />
           {` `}
-          <Button link href=''>
+          <Button link href='https://github.com/cedricium/unearth'>
             View the Source Code
           </Button>
         </div>
