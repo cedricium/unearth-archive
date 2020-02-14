@@ -1,5 +1,7 @@
 import styled, { css, createGlobalStyle } from 'styled-components'
 
+import TopographyBackground from '../images/topography-background.svg'
+
 export const IndexGlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
@@ -9,244 +11,105 @@ export const IndexGlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    overflow-x: hidden;
+    font-family: CircularStd, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #000000;
   }
+`
 
-  p {
-    margin: 0;
-    padding: 0;
+export const Main = styled.main`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  @media (max-width: 400px) {
+    height: unset;
+    min-height: unset;
   }
 `
 
 export const Section = styled.section`
-  width: 100%;
-  padding: 0 20px;
-  height: auto;
+  flex-grow: 1;
+  flex-basis: 0;
+  flex-shrink: 0;
+`
+
+export const Hero = styled(Section)`
+  padding: 0 0 0 40px;
+  min-width: 720px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
 
-  ${props =>
-    props.fullHeight &&
-    css`
-      min-height: 80vh;
-    `}
+  @media (max-width: 720px) {
+    min-width: unset;
+    width: 100%;
+  }
+
+  @media (max-width: 680px) {
+    padding: 20px 10px 0;
+  }
+`
+
+export const BackgroundSection = styled(Section)`
+  background-color: #ff5c00;
+  background-image: url(${TopographyBackground});
+
+  @media (max-width: 720px) {
+    flex-grow: 0;
+  }
+`
+
+export const Header = styled.h1`
+  margin: 0 0 20px;
+  max-width: 470px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 46px;
+  line-height: 58px;
+  color: #000000;
+`
+
+export const Subheader = styled.p`
+  margin: 0;
+  max-width: 464px;
+  font-style: normal;
+  font-weight: 100;
+  font-size: 24px;
+  line-height: 36px;
+  color: #000000;
+`
+
+export const Button = styled.a`
+  display: inline-flex;
+  text-align: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #000000;
+  font-size: 18px;
+  font-weight: 100;
+
+  @media (max-width: 420px) {
+    width: 100%;
+    margin: 0 0 10px;
+  }
 
   ${props =>
     props.primary &&
     css`
-      margin: 60px 0 0;
-      padding: 40px 0;
-      position: relative;
-      width: 100vw;
-      left: calc(-50vw + 50%);
-
-      font-size: 16px;
+      background: #ff5c00;
       color: #ffffff;
-      background: #030047;
     `}
-`
 
-export const SectionWrapper = styled.div`
-  margin: 20px 0;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: ${props => props.justifyContent || 'space-around'};
-  align-items: center;
-
-  @media (max-width: 860px) {
-    flex-direction: column;
-  }
-`
-
-export const HeroContent = styled.div`
-  max-width: 450px;
-
-  @media (max-width: 860px) {
-    max-width: 500px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-`
-
-export const ImageWrapper = styled.div`
-  width: 100%;
-  max-width: ${props => props.width || '400px'};
-
-  @media (max-width: 860px) {
-    margin: ${props => props.margin || '50px 0'};
-  }
-`
-
-export const Title = styled.h1`
-  margin: 30px 0 10px;
-  font-size: 42px;
-  line-height: 62px;
-  color: #030047;
-
-  @media (max-width: 860px) {
-    font-size: 34px;
-    line-height: unset;
-  }
-`
-
-export const Subheading = styled.p`
-  font-size: 20px;
-  line-height: 29px;
-  color: #22292f;
-`
-
-export const ExternalLink = styled.a`
-  margin: 20px 0;
-  display: flex;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 23px;
-  color: #ff3e6c;
-  text-decoration-style: dotted;
-`
-
-export const LinkButton = styled.a`
-  margin: 20px 0;
-  width: 260px;
-  display: flex;
-  justify-content: center;
-
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 26px;
-  color: #ffffff;
-  padding: 10px 20px;
-  background: #ff3e6c;
-  border-radius: 8px;
-
-  text-decoration: none;
-`
-
-export const FeatureContent = styled.div`
-  max-width: 350px;
-  margin: 120px 0;
-
-  @media (max-width: 860px) {
-    order: 0 !important;
-    max-width: 600px;
-    margin: 30px 0 0;
-
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-`
-
-export const Header = styled.h2`
-  margin: 0 0 10px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 41px;
-  color: #030047;
-
-  @media (max-width: 860px) {
-    font-size: 24px;
-    line-height: unset;
-  }
-`
-
-export const Text = styled.p`
-  font-size: 18px;
-  line-height: 26px;
-  color: #22292f;
-`
-
-export const HorizontalRule = styled.hr`
-  border: none;
-  height: 1px;
-  background: #e8e8e8;
-  position: relative;
-  width: 100vw;
-  left: calc(-50vw + 50%);
-`
-
-export const CreatorText = styled.p`
-  color: #94a1b8;
-
-  & a {
-    color: #ffffff;
-    text-decoration: underline;
-    text-decoration-style: dotted;
-  }
-`
-
-export const Footer = styled.footer`
-  margin: 20px 0 0;
-  padding: 0 20px;
-  width: 100%;
-  max-width: 960px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  @media (max-width: 860px) {
-    padding: 0;
-    flex-direction: column;
-  }
-`
-
-export const FooterSectionLeft = styled.div`
-  width: 100%;
-  max-width: 280px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`
-
-export const FooterSectionRight = styled.div`
-  width: 100%;
-  max-width: 400px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-
-  @media (max-width: 860px) {
-    min-width: 80%;
-    margin: 20px 0 0;
-    padding: 0 20px;
-  }
-
-  @media (max-width: 560px) {
-    flex-direction: column;
-
-    & a {
-      margin: 0 0 16px;
-      font-size: 18px;
-    }
-  }
-
-  & a {
-    text-decoration: none;
-    color: #ffffff;
-
-    &:hover {
+  ${props =>
+    props.link &&
+    css`
       text-decoration: underline;
       text-decoration-style: dotted;
-    }
-  }
-`
-
-export const FooterIconsWrapper = styled.div`
-  & a {
-    color: #ffffff;
-    margin: 0 0 0 20px;
-  }
+    `}
 `
