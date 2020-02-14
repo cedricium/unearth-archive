@@ -3,6 +3,7 @@ import { navigate } from 'gatsby'
 import { connect } from 'react-redux'
 import { OauthReceiver } from 'react-oauth-flow'
 import qs from 'querystring'
+import axios from 'axios'
 
 import { retrieveRedditorInfo, registerUser } from '../../redux/actions'
 
@@ -24,30 +25,23 @@ const ReceiveFromReddit = props => {
     console.error(error, state)
   }
 
-  const fetchToken = (url, tokenFetchArgs) => {
-    const { code } = qs.parse(window.location.search)
-    const accessTokenUrl = process.env.REACT_APP_ACCESS_TOKEN_URL
-    const body = {
-      grant_type: 'authorization_code',
-      code,
-      redirect_uri: `${CLIENT_URL}/app/auth/reddit`,
+  const fetchToken = async (url, tokenFetchArgs) => {
+    try {
+      const { code } = qs.parse(window.location.search)
+      const body = {
+        grant_type: 'authorization_code',
+        code,
+        redirect_uri: `${CLIENT_URL}/app/auth/reddit`,
+      }
+
+      const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL
+      const redditProxyAccessTokenUrl = `${BACKEND_API_URL}/reddit/access_token`
+      const { data } = await axios.post(redditProxyAccessTokenUrl, body)
+
+      return data
+    } catch (error) {
+      throw error
     }
-    const request = fetch(accessTokenUrl, {
-      ...tokenFetchArgs,
-      body: qs.stringify(body),
-    })
-    return request
-      .then(response => {
-        if (!response.ok) throw response
-        return response.json()
-      })
-      .catch(
-        err => console.error(err),
-        // err.json().then(errJSON => {
-        //   const error = new Error(err.statusText)
-        //   throw error
-        // }),
-      )
   }
 
   const redirect = to => navigate(to)
