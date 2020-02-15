@@ -1,10 +1,11 @@
 const Email = require('email-templates')
 const sendMail = require('../sendMail')
+const { generateHash } = require('../../utils')
 
 const mailOptions = async (address, locals) => {
   try {
     const email = new Email()
-    const html = await email.render('welcome/html', { things: locals })
+    const html = await email.render('welcome/html', locals)
     return {
       from: '"Cedric from Unearth" <hello@tryunearth.com>',
       to: address,
@@ -19,6 +20,11 @@ const mailOptions = async (address, locals) => {
 }
 
 module.exports = async (address, data) => {
-  const opts = await mailOptions(address, data)
+  const things = data
+  const unsubscribeData = {
+    email: address,
+    hash: generateHash(address),
+  }
+  const opts = await mailOptions(address, { things, unsubscribeData })
   return sendMail(opts)
 }
