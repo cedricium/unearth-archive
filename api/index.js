@@ -28,8 +28,6 @@ router.use('/unsubscribe', unsubscribeRouter)
 router.use('/reddit', redditProxyRouter)
 
 // Simple health check
-router.get('/status', (req, res) =>
-  res.status(200).json({ status: 'success ' }),
-)
+router.get('/status', (req, res) => res.status(200).json({ status: 'success' }))
 
 module.exports = router
