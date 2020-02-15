@@ -1,0 +1,5 @@
+# Because of the monorepo structure, we want to exclude the client apps from
+# the deployed backend app on Heroku
+#
+# References: https://devcenter.heroku.com/articles/slug-compiler
+/client*
