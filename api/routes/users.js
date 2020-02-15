@@ -78,6 +78,24 @@ router.patch('/:id', async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {})
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const [user] = await db('users').where({ id })
+    if (!user) {
+      return res.status(404).json({
+        error: 'Could not find user with the provided id!',
+      })
+    }
+    await db('users')
+      .where({ id })
+      .delete()
+    res.status(204).end()
+  } catch (error) {
+    res.status(500).json({
+      error: 'An error occurred while processing your request.',
+    })
+  }
+})
 
 module.exports = router
