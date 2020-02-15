@@ -25,7 +25,7 @@ const corsOptions = {
 
 router.use('/users', cors(corsOptions), usersRouter)
 router.use('/unsubscribe', unsubscribeRouter)
-router.use('/reddit', redditProxyRouter)
+router.use('/reddit', cors(corsOptions), redditProxyRouter)
 
 // Simple health check
 router.get('/status', (req, res) => res.status(200).json({ status: 'success' }))
