@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { navigate } from 'gatsby'
 
@@ -8,13 +9,17 @@ const AppDefault = props => {
    * Solely responsible for navigating either to the login page or the account
    * page depending on whether the user is logged in or not.
    */
-  if (props.isLoggedIn === true) {
-    navigate('/app/account')
-    return null
-  } else {
-    navigate('/app/login')
-    return null
-  }
+  useEffect(() => {
+    if (props.isLoggedIn === true) {
+      navigate('/app/account')
+      return null
+    } else {
+      navigate('/app/login')
+      return null
+    }
+  }, [props])
+
+  return null
 }
 
 const mapStateToProps = state => ({
