@@ -52,12 +52,20 @@ function SEO({ description, lang, meta, title }) {
           content: `website`,
         },
         {
+          property: `og:url`,
+          content: `https://www.tryunearth.com/`,
+        },
+        {
+          property: `og:image`,
+          content: `https://www.tryunearth.com/og-image.png`,
+        },
+        {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: `@CedricAmaya`,
         },
         {
           name: `twitter:title`,
@@ -67,7 +75,11 @@ function SEO({ description, lang, meta, title }) {
           name: `twitter:description`,
           content: metaDescription,
         },
-      ].concat(meta)}
+        {
+          name: `twitter:image`,
+          content: `https://www.tryunearth.com/og-image.png`,
+        },
+      ]}
     />
   )
 }
