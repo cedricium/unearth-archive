@@ -4,4 +4,4 @@
  * See: https://www.gatsbyjs.org/docs/ssr-apis/
  */
 
-export { default as wrapRootElement } from './src/redux/redux-wrapper'
+export { default as wrapRootElement } from './src/redux/redux-ssr-wrapper'
