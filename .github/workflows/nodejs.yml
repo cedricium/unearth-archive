@@ -32,6 +32,12 @@ jobs:
         with:
           node-version: '10.16.x'
       - run: yarn install
+      - run: yarn pretest
+        env:
+          CI: true
+          NODE_ENV: test
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port
       - run: yarn test:ci
         env:
           CI: true
