@@ -4,6 +4,7 @@ const cors = require('cors')
 const usersRouter = require('./routes/users')
 const unsubscribeRouter = require('./routes/unsubscribe')
 const redditProxyRouter = require('./routes/reddit')
+const statusRouter = require('./routes/status')
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -26,8 +27,6 @@ const corsOptions = {
 router.use('/users', cors(corsOptions), usersRouter)
 router.use('/unsubscribe', unsubscribeRouter)
 router.use('/reddit', cors(corsOptions), redditProxyRouter)
-
-// Simple health check
-router.get('/status', (req, res) => res.status(200).json({ status: 'success' }))
+router.use('/status', statusRouter)
 
 module.exports = router

@@ -24,9 +24,10 @@
     "socket.io": "^2.3.0"
   },
   "scripts": {
-    "pretest": "cross-env NODE_ENV=testing yarn db:reset",
-    "test": "cross-env NODE_ENV=testing jest --watchAll",
-    "test:debug": "cross-env NODE_ENV=testing jest --runInBand --detectOpenHandles",
+    "pretest": "cross-env NODE_ENV=test yarn db:reset",
+    "test": "cross-env NODE_ENV=test jest --watchAll",
+    "test:ci": "cross-env NODE_ENV=test jest --ci --runInBand",
+    "test:debug": "cross-env NODE_ENV=test jest --debug --runInBand --detectOpenHandles",
     "start": "NODE_ENV=production node index.js",
     "dev": "nodemon index.js",
     "db:rollback": "./node_modules/.bin/knex migrate:rollback --all",

@@ -32,8 +32,9 @@ jobs:
         with:
           node-version: '10.16.x'
       - run: yarn install
-      - run: yarn test
+      - run: yarn test:ci
         env:
           CI: true
           NODE_ENV: test
-          TEST_DATABASE_UR: postgres://postgres:postgres@localhost:5432/unearth-test
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port

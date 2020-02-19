@@ -12,10 +12,17 @@ module.exports = {
       directory: './database/seeds',
     },
   },
-  testing: {
+  test: {
     client: 'pg',
     useNullAsDefault: true,
-    connection: process.env.TEST_DATABASE_URL,
+    connection: {
+      host: process.env.POSTGRES_HOST,
+      port: process.env.POSTGRES_PORT,
+      user: 'postgres',
+      password: 'postgres',
+      database: 'unearth-test',
+    },
+    pool: { min: 0, max: 7 },
     migrations: {
       directory: './database/migrations',
     },
