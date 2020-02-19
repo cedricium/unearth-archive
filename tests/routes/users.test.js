@@ -78,4 +78,10 @@ describe('User Endpoint(s)', () => {
     expect(res.status).toBe(204)
     expect(emptyUserRecord).toBeFalsy()
   })
+
+  afterAll(async done => {
+    // Closing the DB connection allows Jest to exit successfully.
+    db.destroy()
+    done()
+  })
 })

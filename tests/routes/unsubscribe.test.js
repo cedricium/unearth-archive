@@ -58,4 +58,10 @@ describe('Unsubscribe Endpoint(s)', () => {
     )
     expect(user).toHaveProperty('frequency', 'weekly')
   })
+
+  afterAll(async done => {
+    // Closing the DB connection allows Jest to exit successfully.
+    db.destroy()
+    done()
+  })
 })
