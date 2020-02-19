@@ -24,6 +24,9 @@
     "socket.io": "^2.3.0"
   },
   "scripts": {
+    "pretest": "cross-env NODE_ENV=testing yarn db:reset",
+    "test": "cross-env NODE_ENV=testing jest --watchAll",
+    "test:debug": "cross-env NODE_ENV=testing jest --runInBand --detectOpenHandles",
     "start": "NODE_ENV=production node index.js",
     "dev": "nodemon index.js",
     "db:rollback": "./node_modules/.bin/knex migrate:rollback --all",
@@ -32,10 +35,20 @@
     "db:reset": "yarn db:rollback && yarn db:migrate && yarn db:seed"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4"
+    "axios-mock-adapter": "^1.17.0",
+    "cross-env": "^7.0.0",
+    "jest": "^25.1.0",
+    "nodemon": "^1.19.4",
+    "supertest": "^4.0.2"
   },
   "engines": {
     "node": "10.16.x",
     "yarn": "1.x"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/client(\\S+)?"
+    ]
   }
 }
