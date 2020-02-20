@@ -21,9 +21,9 @@ jobs:
       postgres:
         image: postgres:9.6
         env:
-          PG_USER: postgres
-          PG_PASSWORD: postgres
-          PG_DB: unearth-test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: unearth-test
         ports:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
