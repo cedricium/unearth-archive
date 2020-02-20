@@ -12,7 +12,7 @@ module.exports = {
       directory: './database/seeds',
     },
   },
-  test: {
+  asdf: {
     debug: true,
     asyncStackTraces: true,
     client: 'pg',

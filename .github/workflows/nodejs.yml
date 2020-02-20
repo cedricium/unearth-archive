@@ -39,7 +39,7 @@ jobs:
       - run: yarn test
         env:
           CI: true
-          NODE_ENV: test
+          NODE_ENV: asdf
           # use postgres for the host here because we have specified a container for the job.
           # If we were running the job on the VM this would be localhost
           PG_HOST: postgres
