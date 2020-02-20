@@ -1,9 +1,5 @@
 require('dotenv').config()
 
-console.log(
-  `KNEXFILE.JS\npostgres://postgres:postgres@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}/unearth-test\n`,
-)
-
 module.exports = {
   development: {
     client: 'pg',

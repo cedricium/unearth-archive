@@ -2,10 +2,6 @@ const request = require('supertest')
 const server = require('../../app')
 const db = require('../../database/config')
 
-console.log(
-  `USERS.TEST.JS\npostgres://postgres:postgres@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}/unearth-test\n`,
-)
-
 describe('User Endpoint(s)', () => {
   beforeEach(async () => {
     await db.raw('TRUNCATE things, users RESTART IDENTITY CASCADE')
@@ -81,11 +77,5 @@ describe('User Endpoint(s)', () => {
 
     expect(res.status).toBe(204)
     expect(emptyUserRecord).toBeFalsy()
-  })
-
-  afterAll(async done => {
-    // Closing the DB connection allows Jest to exit successfully.
-    db.destroy()
-    done()
   })
 })
