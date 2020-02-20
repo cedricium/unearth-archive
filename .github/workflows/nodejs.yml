@@ -9,8 +9,9 @@ on:
       - master
 
 jobs:
-  vm-job:
+  containerized-tests:
     runs-on: ubuntu-latest
+    container: node:10.16-jessie
 
     services:
       postgres:
@@ -20,8 +21,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: unearth-test
         ports:
-          # will assign a random free host port
-          - 5432/tcp
+          - 5432:5432
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
@@ -36,4 +36,8 @@ jobs:
         env:
           CI: true
           NODE_ENV: test
-          TEST_DATABASE_UR: postgres://postgres:postgres@localhost:5432/unearth-test
+          DB_HOST: postgres
+          DB_PORT: ${{ job.services.postgres.ports[5432] }}
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DB_DATABASE: unearth-test

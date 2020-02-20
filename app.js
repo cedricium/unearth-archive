@@ -6,13 +6,13 @@ const logger = require('morgan')
 const apiBaseRouter = require('./api')
 
 const app = express()
-app.use(logger('dev'))
+process.env.NODE_ENV !== 'test' && app.use(logger('dev'))
 app.use(helmet())
 app.use(bodyParser.json())
 app.use('/api/v1', apiBaseRouter)
 
 app.get('/', (req, res) => {
-  res.send(`${new Date().toLocaleString('en-US')} - Welcome! 👋`)
+  res.status(200).send(`${new Date().toLocaleString('en-US')} - Welcome! 👋`)
 })
 
 module.exports = app

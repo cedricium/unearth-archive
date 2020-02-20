@@ -15,6 +15,15 @@ const qs = require('querystring')
 router.post('/access_token', async (req, res) => {
   try {
     const { REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET } = process.env
+    const { grant_type, code, redirect_uri } = req.body
+
+    if (!grant_type || !code || !redirect_uri) {
+      return res.status(400).json({
+        error:
+          'Missing one or more of the following: grant_type, code, redirect_uri',
+      })
+    }
+
     const body = qs.stringify(req.body)
 
     const { data } = await axios.post(
@@ -32,7 +41,6 @@ router.post('/access_token', async (req, res) => {
     )
     res.json(data)
   } catch (error) {
-    console.error(error)
     res.status(500).json({
       error: 'An error occurred while proxying the request to Reddit',
     })

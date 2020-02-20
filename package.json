@@ -27,15 +27,27 @@
     "start": "NODE_ENV=production node index.js",
     "dev": "nodemon index.js",
     "db:rollback": "./node_modules/.bin/knex migrate:rollback --all",
-    "db:migrate": "./node_modules/.bin/knex migrate:up",
+    "db:migrate": "./node_modules/.bin/knex migrate:latest",
     "db:seed": "./node_modules/.bin/knex seed:run",
-    "db:reset": "yarn db:rollback && yarn db:migrate && yarn db:seed"
+    "db:reset": "yarn db:rollback && yarn db:migrate && yarn db:seed",
+    "pretest": "NODE_ENV=test yarn db:reset",
+    "test": "NODE_ENV=test jest --runInBand",
+    "test:watch": "yarn test --watchAll"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4"
+    "axios-mock-adapter": "^1.17.0",
+    "jest": "^25.1.0",
+    "nodemon": "^1.19.4",
+    "supertest": "^4.0.2"
   },
   "engines": {
     "node": "10.16.x",
     "yarn": "1.x"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/client(\\S+)?"
+    ]
   }
 }
