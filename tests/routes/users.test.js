@@ -8,6 +8,8 @@ describe('User Endpoint(s)', () => {
     await db.seed.run()
   })
 
+  afterAll(async () => await db.destroy())
+
   test('should get a user with matching id', async () => {
     const testUserId = 'jk23d'
 

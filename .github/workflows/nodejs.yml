@@ -20,8 +20,10 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: unearth-test
         ports:
-          # will assign a random free host port
-          - 5432/tcp
+          # # will assign a random free host port
+          # - 5432/tcp
+          # map port 5432 on the Docker host to port 5432 on the vm
+          - 5432:5432
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
@@ -36,5 +38,4 @@ jobs:
         env:
           CI: true
           NODE_ENV: test
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port
+          TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/unearth-test

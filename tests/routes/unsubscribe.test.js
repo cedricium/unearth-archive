@@ -10,6 +10,8 @@ describe('Unsubscribe Endpoint(s)', () => {
     await db.seed.run()
   })
 
+  afterAll(async () => await db.destroy())
+
   test('should return an error if missing either email or hash', async () => {
     const mockData = {
       email: 'test@example.com',

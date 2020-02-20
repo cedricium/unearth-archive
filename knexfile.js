@@ -15,7 +15,7 @@ module.exports = {
   test: {
     client: 'pg',
     useNullAsDefault: true,
-    connection: `postgres://postgres:postgres@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}/unearth-test`,
+    connection: process.env.TEST_DATABASE_URL,
     migrations: {
       directory: './database/migrations',
     },
