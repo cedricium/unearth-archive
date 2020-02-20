@@ -9,20 +9,22 @@ on:
       - master
 
 jobs:
-  vm-job:
+  container-job:
     runs-on: ubuntu-latest
+
+    # runs all of the steps inside the specified container rather than on the VM host.
+    # Because of this the network configuration changes from host based network to a container network.
+    container:
+      image: node:10.16-jessie
 
     services:
       postgres:
         image: postgres:9.6
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: unearth-test
+          PG_USER: postgres
+          PG_PASSWORD: postgres
+          PG_DB: unearth-test
         ports:
-          # # will assign a random free host port
-          # - 5432/tcp
-          # map port 5432 on the Docker host to port 5432 on the vm
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -38,4 +40,11 @@ jobs:
         env:
           CI: true
           NODE_ENV: test
+          # use postgres for the host here because we have specified a container for the job.
+          # If we were running the job on the VM this would be localhost
+          PG_HOST: postgres
+          PG_USER: postgres
+          PG_PASSWORD: postgres
+          PG_PORT: ${{ job.services.postgres.ports[5432] }}
+          PG_DB: unearth-test
           TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/unearth-test
