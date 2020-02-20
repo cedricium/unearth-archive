@@ -13,6 +13,8 @@ module.exports = {
     },
   },
   test: {
+    debug: true,
+    asyncStackTraces: true,
     client: 'pg',
     useNullAsDefault: true,
     connection: {
