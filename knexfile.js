@@ -22,7 +22,6 @@ module.exports = {
       password: 'postgres',
       database: 'unearth-test',
     },
-    pool: { min: 0, max: 7 },
     migrations: {
       directory: './database/migrations',
     },
