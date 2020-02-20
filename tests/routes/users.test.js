@@ -2,6 +2,10 @@ const request = require('supertest')
 const server = require('../../app')
 const db = require('../../database/config')
 
+console.log(
+  `USERS.TEST.JS\npostgres://postgres:postgres@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}/unearth-test\n`,
+)
+
 describe('User Endpoint(s)', () => {
   beforeEach(async () => {
     await db.raw('TRUNCATE things, users RESTART IDENTITY CASCADE')
