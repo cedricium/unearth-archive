@@ -4,7 +4,7 @@
   <img src="https://raw.githubusercontent.com/cedricium/unearth/5a355e2e743eefd49ffed2f53537dbc81ef8a1ad/client/public/og-image.png" width="auto" height="360" />
 </a>
 
-### It's like Timehop for Reddit saves.
+### Like Timehop for Reddit saves.
 
 </div>
 
@@ -81,7 +81,7 @@ of this monorepo:
 
 Here is a list of all the big technologies used in this project:
 
-- **React:** frontend client app
+- **React/Gatsby:** frontend client app
 
 - **Express.js:** RESTful API server
 
@@ -96,13 +96,18 @@ Here is a list of all the big technologies used in this project:
 
 ```text
 unearth/
+├── .github           # GitHub-specific files for managing this repo
 ├── api               # RESTful API endpoints
-├── cleint            # frontend SPA
+├── client            # DEPRECATED - frontend SPA
+├── client-v2         # Gatsby dynamic web app
 ├── database          # config file, migrations, and seeds for postgres db
 ├── docs              # coming soon!
-├── email-templates   # Pug.js email templates
+├── emails            # Pug.js email templates
 ├── jobs              # executed using cron
-└── services          # business logic for sending emails and connecting to Reddit
+├── mailers           # business logic for sending emails
+├── services          # business logic for connecting to Reddit
+├── tests             # mix of functional and unit tests for the backend app
+└── utils             # shared functionality used throughout the backend app
 ```
 
 ### First-time Setup
@@ -138,15 +143,18 @@ running on your machine.
 Then in a new terminal tab or window, run these commands:
 
 ```sh
-$ yarn run db:migrate
-$ yarn run db:seed
+$ yarn db:migrate
+$ yarn db:seed
 ```
 
 There's also a shortcut for dropping, migrating and seeding the database:
 
 ```sh
-$ yarn run db:reset
+$ yarn db:reset
 ```
+
+> Note: the easiest way to get real test data into the database is to go through
+> the onboarding process using your own Reddit account.
 
 #### Setup the secrets
 
@@ -158,7 +166,7 @@ file to the real location:
 $ cp .env.example .env
 ```
 
-> Note: this will need to be done in both the root and the `client/` directories
+> Note: this will need to be done in both the root and the `client-v2/` directories
 
 Now you're ready to run the app locally and start development!
 
@@ -176,21 +184,28 @@ No matter what you're trying to work on, you'll want to have the API running, so
 start that in a background tab:
 
 ```sh
-$ yarn run dev
+$ yarn dev
 ```
 
 #### Develop the client app
 
-To develop the frontend and web UI, first:
+The current Unearth website is built using GatsbyJS and is [hybrid static/dynamic
+web application](https://www.gatsbyjs.org/blog/2018-10-15-beyond-static-intro/).
+
+Look over the GatsbyJS documentation for more information:
+
+- **Gatsby Docs:** https://www.gatsbyjs.org/docs/
+
+To get started making contributions to the frontend client:
 
 ```sh
-$ cd client
+$ cd client-v2
 ```
 
 then start the app:
 
 ```sh
-$ yarn start
+$ yarn dev
 ```
 
 #### Edit email templates
