@@ -22,7 +22,7 @@
     "pg": "^7.12.1",
     "pug": "^2.0.4",
     "snoowrap": "^1.20.1",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   },
   "scripts": {
     "start": "NODE_ENV=production node index.js",
