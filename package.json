@@ -14,7 +14,7 @@
     "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "email-templates": "^6.0.3",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "helmet": "^3.21.2",
     "knex": "^0.19.5",
     "morgan": "^1.9.1",
